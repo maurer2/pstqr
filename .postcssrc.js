@@ -1,5 +1,7 @@
 module.exports = {
-  plugins: {
-    autoprefixer: {}
-  }
+    plugins: {
+        'autoprefixer': {},
+        'postcss-short-color': {},
+        'postcss-normalize': {},
+    }
 }
