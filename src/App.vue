@@ -4,7 +4,7 @@
       Header
     </header>
     <main class="main">
-      <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+      <NumberInput></NumberInput>
     </main>
     <footer class="footer">
       Footer
@@ -14,11 +14,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import NumberInput from './components/NumberInput.vue';
 
 @Component({
   components: {
-    HelloWorld,
+      NumberInput,
   },
 })
 export default class App extends Vue {}
@@ -45,7 +45,12 @@ body {
     padding: 0;
     box-sizing: border-box;
     min-height: 100%;
+    height: 100%;
     background: var(--color-zeta);
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
@@ -54,11 +59,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: var(--color-delta);
+  overflow: scroll;
 }
 
-.wrapper {}
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+}
+
+.main {}
 
 .header {
-  color: var(--color-alpha) var(--color-beta);
+  padding: 1rem 0.5rem;
+  color: var(--color-zeta) var(--color-beta);
+}
+
+.footer {
+  color: var(--color-zeta) var(--color-delta);
 }
 </style>
