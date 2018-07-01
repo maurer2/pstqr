@@ -35,7 +35,9 @@ export default class App extends Vue {}
     --color-zeta: rgba(232, 228, 226, 1);
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
