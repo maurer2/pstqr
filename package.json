@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.110",
+    "lodash": "^4.17.10",
     "postcss-normalize": "^6.0.0",
     "postcss-short-color": "^3.0.0",
     "postcss-strip-inline-comments": "^0.1.5",

@@ -1,16 +1,17 @@
 <template>
-  <form @submit.prevent="onSubmit()">
-    <div>
-        <label for="number-old">Alte Nummer</label>
-        <input v-model="numberOld" type="text" name="number-old" id="number-old" placeholder="Alte Nummer" @change="onChange()" />
+  <form class="form" @submit.prevent="calculateNewNumber()" autocomplete="off">
+    <div class="form-row">
+        <label class="form-label" for="number-old">Alte Nummer</label>
+        <input class="form-field" v-model="numberOld" name="number-old" id="number-old" placeholder="Alte Nummer" @change="calculateNewNumber()" autocomplete="off" />
+        <p class="form-error"></p>
     </div>
 
-    <div>
-        <label for="number-old">Neue Nummer</label>
-        <input v-model="numberNew" type="text" readonly="readonly" />
+    <div class="form-row">
+        <label class="form-label" for="number-old">Neue Nummer</label>
+        <input class="form-field" v-model="numberNew" readonly="readonly"  placeholder="Neue Nummer" />
     </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn">Submit</button>
   </form>
 </template>
 
@@ -22,7 +23,7 @@
     @Component
     export default class NumberInput extends Vue {
         // data
-        numberOld: string = '432432';
+        numberOld: string = '';
         numberCalculated: string = '';
 
         constructor(private PostNumberConverter: PostNumber) {
@@ -36,24 +37,40 @@
         }
 
         // methods
-        onChange() {
-            console.log('change');
-            this.numberCalculated = this.PostNumberConverter.getNewPostNumber(this.numberOld);
-        }
+        calculateNewNumber() {
+            const isValidLength = (this.numberOld.length >= 7 && this.numberOld.length <= 9);
+            // https://github.com/lodash/lodash/issues/1148
+            const isNumber = true; // dummy
 
-        onSubmit() {
-            console.log('submit');
+            // number 7 to 9 digits
+            if (isValidLength && isNumber) {
+                this.numberCalculated = this.PostNumberConverter.getNewPostNumber(this.numberOld);
+            }
         }
     }
 </script>
 
 <style lang="pcss" scoped>
-    form {
+    .form {
         padding: 1rem;
         background: gray;
     }
 
-    div {
+    .form-row {
+        display: flex;
         margin-bottom: 1rem;
+        flex-direction: column;
+    }
+
+    .form-label {
+        margin-bottom: 1rem;
+    }
+
+    .form-field {
+
+    }
+
+    .form-error {
+        color: red;
     }
 </style>

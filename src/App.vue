@@ -5,6 +5,7 @@
     </header>
     <main class="main">
       <NumberInput></NumberInput>
+      <BarcodeGenerator></BarcodeGenerator>
     </main>
     <footer class="footer">
       Footer
@@ -15,10 +16,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import NumberInput from './components/NumberInput.vue';
+import BarcodeGenerator from './components/BarcodeGenerator.vue';
 
 @Component({
   components: {
-      NumberInput,
+      NumberInput, BarcodeGenerator
   },
 })
 export default class App extends Vue {}
