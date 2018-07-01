@@ -5,7 +5,7 @@
     </header>
     <main class="main">
       <NumberInput></NumberInput>
-      <BarcodeGenerator></BarcodeGenerator>
+      <BarcodeGenerator postNumber="3000007790117779"></BarcodeGenerator>
     </main>
     <footer class="footer">
       Footer
