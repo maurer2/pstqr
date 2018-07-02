@@ -1,18 +1,17 @@
 <template>
-  <form class="form" @submit.prevent="calculateNewNumber()" autocomplete="off">
-    <div class="form-row">
-        <label class="form-label" for="number-old">Alte Nummer</label>
-        <input class="form-field" v-model="numberOld" name="number-old" id="number-old" placeholder="Alte Nummer" @change="calculateNewNumber()" autocomplete="off" />
-        <p class="form-error"></p>
-    </div>
-
-    <div class="form-row">
-        <label class="form-label" for="number-old">Neue Nummer</label>
-        <input class="form-field" v-model="numberNew" readonly="readonly"  placeholder="Neue Nummer" />
-    </div>
-
-    <button type="submit" class="btn">Submit</button>
-  </form>
+    <form class="section form" @submit.prevent="calculateNewNumber()" autocomplete="off">
+        <h2 class="section-title">Input</h2>
+        <div class="form-row">
+            <label class="form-label" for="number-old">Alte Nummer</label>
+            <input class="form-field" v-model="numberOld" name="number-old" id="number-old" placeholder="Alte Nummer" @change="calculateNewNumber()" autocomplete="off" />
+            <p class="form-error"></p>
+        </div>
+        <div class="form-row">
+            <label class="form-label" for="number-old">Neue Nummer</label>
+            <input class="form-field" v-model="numberNew" readonly="readonly"  placeholder="Neue Nummer" />
+        </div>
+        <button type="submit" class="btn" @click="$emit('test', 0.1)">Submit</button>
+    </form>
 </template>
 
 <script lang="ts">

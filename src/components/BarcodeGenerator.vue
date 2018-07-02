@@ -1,6 +1,6 @@
 <template>
-  <section class="barcode" v-if="postNumber">
-      <h2>Barcode</h2>
+  <section class="section barcode" v-if="postNumber">
+      <h2 class="section-title">Barcode</h2>
       <svg class="barcode-image" jsbarcode-format="itf" :jsbarcode-value="postNumber" ref="barcode"></svg>
   </section>
 </template>

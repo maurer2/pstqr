@@ -4,8 +4,15 @@
       Header
     </header>
     <main class="main">
-      <NumberInput></NumberInput>
-      <BarcodeGenerator postNumber="3000007790117779"></BarcodeGenerator>
+      <div class="row">
+        <div class="col">
+          Dings
+        </div>
+        <div class="col">
+          <NumberInput v-on:test="test()"></NumberInput>
+        </div>
+      </div>
+      <BarcodeGenerator :postNumber="postNumber"></BarcodeGenerator>
     </main>
     <footer class="footer">
       Footer
@@ -23,7 +30,13 @@ import BarcodeGenerator from './components/BarcodeGenerator.vue';
       NumberInput, BarcodeGenerator
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+    postNumber: string | boolean = false;
+
+    test(){
+        console.log('wefwe');
+    }
+}
 </script>
 
 <style lang="pcss">
@@ -64,6 +77,17 @@ body {
   text-align: center;
   color: var(--color-delta);
   overflow: scroll;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
 .wrapper {
