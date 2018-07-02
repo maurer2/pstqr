@@ -10,7 +10,9 @@
             <label class="form-label" for="number-old">Neue Nummer</label>
             <input class="form-field" v-model="numberNew" readonly="readonly"  placeholder="Neue Nummer" />
         </div>
-        <button type="submit" class="btn" @click="$emit('test', 0.1)">Submit</button>
+        <div class="form-row">
+            <button type="submit" class="btn" @click="$emit('newNumber', numberNew)">Submit</button>
+        </div>
     </form>
 </template>
 
@@ -51,7 +53,9 @@
 
 <style lang="pcss" scoped>
     .form {
-        padding: 1rem;
+        padding: 0 1rem;
+        height: 100%;
+        overflow: hidden;
         background: gray;
     }
 

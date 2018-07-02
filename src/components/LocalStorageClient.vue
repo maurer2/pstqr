@@ -1,54 +1,41 @@
 <template>
-  <section class="section barcode" v-if="postNumber">
-      <h2 class="section-title">Barcode</h2>
-      <svg class="barcode-image" jsbarcode-format="itf" :jsbarcode-value="postNumber" ref="barcode"></svg>
+  <section class="section localstorage">
+      <h2>Saved Numbers</h2>
+      <ul class="list list-buttons" v-for="number in numberList" :key="number" v-if="numberList.length > 0">
+        <li class="list-entry">
+            <button type="button">{{ number }}</button>
+        </li>
+      </ul>
   </section>
 </template>
 
 <script lang="ts">
     // https://github.com/vuejs/vue-class-component
     import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
-    import JsBarcode from 'jsbarcode';
 
     @Component
-    export default class BarcodeGenerator extends Vue {
-        @Prop({ type: [Boolean, String], default: false, required: true })
-        postNumber: boolean | string;
+    export default class LocalStorageClient extends Vue {
+        @Prop({ type: [Boolean, String], default: false, required: false })
+        numberToSave: boolean | string;
+
+        numberList: string[] = [];
 
         constructor() {
             super();
-        }
 
-        mounted () {
-            this.initBarcode();
-        }
-
-        initBarcode() {
-            if (!this.postNumber) {
-                return
-            }
-
-            const barcodeDom = this.$refs['barcode'];
-            JsBarcode(barcodeDom).init();
-        }
-
-        @Watch('postNumber')
-        onPropertyChanged(newValue: string | boolean) {
-            if (newValue !== false) {
-                this.initBarcode();
-            }
+            this.numberList.push('123456');
         }
     }
 </script>
 
 <style lang="pcss" scoped>
-    .barcode {
-        background: #c3c3c3;
+    .localstorage {
+        height: 100%;
+        background: navajowhite;
         overflow: hidden;
     }
 
-    .barcode-image {
-        display: block;
-        margin: 1rem auto;
+    .list-buttons {
+        list-style: none;
     }
 </style>

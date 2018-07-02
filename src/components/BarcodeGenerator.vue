@@ -1,7 +1,7 @@
 <template>
-  <section class="section barcode" v-if="postNumber">
+  <section class="section barcode">
       <h2 class="section-title">Barcode</h2>
-      <svg class="barcode-image" jsbarcode-format="itf" :jsbarcode-value="postNumber" ref="barcode"></svg>
+      <svg class="barcode-image" jsbarcode-format="itf" :jsbarcode-value="newNumber" ref="barcode"></svg>
   </section>
 </template>
 
@@ -13,18 +13,18 @@
     @Component
     export default class BarcodeGenerator extends Vue {
         @Prop({ type: [Boolean, String], default: false, required: true })
-        postNumber: boolean | string;
+        newNumber: boolean | string;
 
         constructor() {
             super();
         }
 
-        mounted () {
+        mount() {
             this.initBarcode();
         }
 
         initBarcode() {
-            if (!this.postNumber) {
+            if (!this.newNumber) {
                 return
             }
 
@@ -32,11 +32,13 @@
             JsBarcode(barcodeDom).init();
         }
 
-        @Watch('postNumber')
+        @Watch('newNumber')
         onPropertyChanged(newValue: string | boolean) {
-            if (newValue !== false) {
-                this.initBarcode();
-            }
+            this.$nextTick().then(() => {
+                if (newValue !== false) {
+                    this.initBarcode();
+                }
+            });
         }
     }
 </script>
