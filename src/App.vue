@@ -4,15 +4,29 @@
           Header <template v-if="newNumber !== false">(Number: {{ newNumber }})</template>
         </header>
         <main class="main">
+            <nav class="nav">
+                <h2 class="section-headline">Eingabe&shy;möglichkeiten</h2>
+                <div class="nav-buttons">
+                    <button type="button" :disabled="!cardInputIsAvailable">
+                        Karte scannen
+                    </button>
+                    <button type="button" :disabled="!localStorageIsAvailable">
+                        Gespeicherte Karte
+                    </button>
+                    <button type="button" :disabled="!numberInputIsAvailable">
+                        Nummer eingabe
+                    </button>
+                </div>
+            </nav>
             <div class="row">
-                <div class="col">
-                    <LocalStorageClient :numberToSave="false"></LocalStorageClient>
-                </div>
-                <div class="col">
-                    <NumberInput v-on:newNumber="onNewNumber"></NumberInput>
-                </div>
-          </div>
-          <BarcodeGenerator :newNumber="newNumber"></BarcodeGenerator>
+                <LocalStorageClient :numberToSave="false"></LocalStorageClient>
+            </div>
+            <div class="row">
+                <NumberInput v-on:newNumber="onNewNumber"></NumberInput>
+            </div>
+            <div class="row">
+                <BarcodeGenerator :newNumber="newNumber"></BarcodeGenerator>
+            </div>
         </main>
         <footer class="footer">
             Footer
@@ -32,7 +46,17 @@ import LocalStorageClient from './components/LocalStorageClient';
   },
 })
 export default class App extends Vue {
+    cardInputIsAvailable: boolean = false;
+    localStorageIsAvailable: boolean = false;
+    numberInputIsAvailable: boolean = true;
+
+    activeComponent: Vue | boolean = false;
+
     newNumber: string | boolean = false;
+
+    constructor() {
+        super()
+    }
 
     onNewNumber(newNumber){
         this.newNumber = newNumber;
@@ -87,7 +111,7 @@ body {
 }
 
 .row {
-  display: flex;
+  
 }
 
 .col {
@@ -102,6 +126,15 @@ body {
 .header {
   padding: 1rem 0.5rem;
   color: var(--color-zeta) var(--color-beta);
+}
+
+.nav {
+  overflow: hidden;
+  background: azure;
+}
+
+.nav-buttons {
+    margin-bottom: 1rem;
 }
 
 .footer {
