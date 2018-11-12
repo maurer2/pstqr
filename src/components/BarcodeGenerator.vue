@@ -13,27 +13,27 @@
     @Component
     export default class BarcodeGenerator extends Vue {
         @Prop({ type: [Boolean, String], default: false, required: true })
-        newNumber: boolean | string;
+        private newNumber!: boolean | string;
 
         constructor() {
             super();
         }
 
-        mount() {
+        public mount() {
             this.initBarcode();
         }
 
-        initBarcode() {
+        public initBarcode() {
             if (!this.newNumber) {
-                return
+                return;
             }
 
-            const barcodeDom = this.$refs['barcode'];
+            const barcodeDom = this.$refs.barcode;
             JsBarcode(barcodeDom).init();
         }
 
         @Watch('newNumber')
-        onPropertyChanged(newValue: string | boolean) {
+        public onPropertyChanged(newValue: string | boolean) {
             this.$nextTick().then(() => {
                 if (newValue !== false) {
                     this.initBarcode();

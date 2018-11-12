@@ -19,13 +19,14 @@
 <script lang="ts">
     // https://github.com/vuejs/vue-class-component
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    // @ts-ignore
     import PostNumber from '../../numberGenerator/javascript/PostNumber.js';
 
     @Component
     export default class NumberInput extends Vue {
         // data
-        numberOld: string = '';
-        numberCalculated: string = '';
+        public numberOld: string = '';
+        public numberCalculated: string = '';
 
         constructor(private PostNumberConverter: PostNumber) {
             super();
@@ -38,7 +39,7 @@
         }
 
         // methods
-        calculateNewNumber() {
+        public calculateNewNumber() {
             const isValidLength = (this.numberOld.length >= 7 && this.numberOld.length <= 9);
             // https://github.com/lodash/lodash/issues/1148
             const isNumber = true; // dummy

@@ -10,8 +10,6 @@
 
     @Component
     export default class CardInput extends Vue {
-        @Prop({ type: [Boolean, String], default: false, required: false })
-
         constructor() {
             super();
         }

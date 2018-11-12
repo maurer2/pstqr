@@ -16,9 +16,9 @@
     @Component
     export default class LocalStorageClient extends Vue {
         @Prop({ type: [Boolean, String], default: false, required: false })
-        numberToSave: boolean | string;
+        private numberToSave!: boolean | string;
 
-        numberList: string[] = [];
+        private numberList: string[] = [];
 
         constructor() {
             super();

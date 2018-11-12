@@ -14,7 +14,7 @@
                         Gespeicherte Karte
                     </button>
                     <button type="button" :disabled="!numberInputIsAvailable">
-                        Nummer eingabe
+                        Nummer Eingabe
                     </button>
                 </div>
             </nav>
@@ -38,27 +38,25 @@
 import { Component, Vue } from 'vue-property-decorator';
 import NumberInput from './components/NumberInput.vue';
 import BarcodeGenerator from './components/BarcodeGenerator.vue';
-import LocalStorageClient from './components/LocalStorageClient';
+import LocalStorageClient from './components/LocalStorageClient.vue';
 
 @Component({
   components: {
-      NumberInput, BarcodeGenerator, LocalStorageClient
+      NumberInput, BarcodeGenerator, LocalStorageClient,
   },
 })
 export default class App extends Vue {
-    cardInputIsAvailable: boolean = false;
-    localStorageIsAvailable: boolean = false;
-    numberInputIsAvailable: boolean = true;
-
-    activeComponent: Vue | boolean = false;
-
-    newNumber: string | boolean = false;
+    public cardInputIsAvailable: boolean = false;
+    public localStorageIsAvailable: boolean = false;
+    public numberInputIsAvailable: boolean = true;
+    public activeComponent: Vue | boolean = false;
+    public newNumber: string | boolean = false;
 
     constructor() {
-        super()
+        super();
     }
 
-    onNewNumber(newNumber){
+    public onNewNumber(newNumber: string | boolean) {
         this.newNumber = newNumber;
     }
 }
@@ -111,7 +109,7 @@ body {
 }
 
 .row {
-  
+
 }
 
 .col {
@@ -119,7 +117,6 @@ body {
   flex-grow: 1;
   flex-basis: 0;
 }
-
 
 .main {}
 
