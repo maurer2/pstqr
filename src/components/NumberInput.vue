@@ -8,7 +8,7 @@
         </div>
         <div class="form-row">
             <label class="form-label" for="number-old">Neue Nummer</label>
-            <input class="form-field" v-model="numberNew" readonly="readonly"  placeholder="Neue Nummer" />
+            <input class="form-field" v-model="numberNew" readonly="readonly" placeholder="Neue Nummer" />
         </div>
         <div class="form-row">
             <button type="submit" class="btn" @click="$emit('newNumber', numberNew)">Submit</button>
@@ -20,17 +20,14 @@
     // https://github.com/vuejs/vue-class-component
     import { Component, Prop, Vue } from 'vue-property-decorator';
     // @ts-ignore
-    import PostNumber from '../../numberGenerator/javascript/PostNumber.js';
 
-    @Component
     export default class NumberInput extends Vue {
         // data
         public numberOld: string = '';
-        public numberCalculated: string = '';
+        public numberCalculated: string = '123456789';
 
-        constructor(private PostNumberConverter: PostNumber) {
+        constructor() {
             super();
-            this.PostNumberConverter = new PostNumber();
         }
 
         // calculated properties
@@ -46,7 +43,7 @@
 
             // number 7 to 9 digits
             if (isValidLength && isNumber) {
-                this.numberCalculated = this.PostNumberConverter.getNewPostNumber(this.numberOld);
+                // this.numberCalculated =
             }
         }
     }

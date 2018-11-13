@@ -1,66 +1,24 @@
 <template>
-    <div class="wrapper">
-        <header class="header">
-          Header <template v-if="newNumber !== false">(Number: {{ newNumber }})</template>
-        </header>
-        <main class="main">
-            <nav class="nav">
-                <h2 class="section-headline">Eingabe&shy;möglichkeiten</h2>
-                <div class="nav-buttons">
-                    <button type="button" :disabled="!cardInputIsAvailable">
-                        Karte scannen
-                    </button>
-                    <button type="button" :disabled="!localStorageIsAvailable">
-                        Gespeicherte Karte
-                    </button>
-                    <button type="button" :disabled="!numberInputIsAvailable">
-                        Nummer Eingabe
-                    </button>
-                </div>
-            </nav>
-            <div class="row">
-                <LocalStorageClient :numberToSave="false"></LocalStorageClient>
-            </div>
-            <div class="row">
-                <NumberInput v-on:newNumber="onNewNumber"></NumberInput>
-            </div>
-            <div class="row">
-                <BarcodeGenerator :newNumber="newNumber"></BarcodeGenerator>
-            </div>
-        </main>
-        <footer class="footer">
-            Footer
-        </footer>
-    </div>
+  <div class="wrapper" id="app">
+    <header class="header">
+      Header
+    </header>
+    <main class="main">
+      <nav class="nav">
+        <div class="nav-buttons">
+          <router-link to="/">Home</router-link>
+          <router-link to="/card">Card</router-link>
+          <router-link to="/barcode">Barcode</router-link>
+        </div>
+      </nav>
+      <router-view/>
+    </main>
+    <footer class="footer">
+      Footer
+    </footer>
+  </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import NumberInput from './components/NumberInput.vue';
-import BarcodeGenerator from './components/BarcodeGenerator.vue';
-import LocalStorageClient from './components/LocalStorageClient.vue';
-
-@Component({
-  components: {
-      NumberInput, BarcodeGenerator, LocalStorageClient,
-  },
-})
-export default class App extends Vue {
-    public cardInputIsAvailable: boolean = false;
-    public localStorageIsAvailable: boolean = false;
-    public numberInputIsAvailable: boolean = true;
-    public activeComponent: Vue | boolean = false;
-    public newNumber: string | boolean = false;
-
-    constructor() {
-        super();
-    }
-
-    public onNewNumber(newNumber: string | boolean) {
-        this.newNumber = newNumber;
-    }
-}
-</script>
 
 <style lang="pcss">
 @import-normalize;
@@ -90,7 +48,7 @@ body {
 }
 
 html {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 body {
@@ -98,8 +56,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  overflow-y: scroll;
   color: var(--color-delta);
-  overflow: scroll;
 }
 
 .wrapper {
