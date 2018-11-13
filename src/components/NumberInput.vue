@@ -19,8 +19,8 @@
 <script lang="ts">
     // https://github.com/vuejs/vue-class-component
     import { Component, Prop, Vue } from 'vue-property-decorator';
-    // @ts-ignore
 
+    @Component
     export default class NumberInput extends Vue {
         // data
         public numberOld: string = '';

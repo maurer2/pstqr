@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h2 class="section-headline">Eingabe&shy;möglichkeiten</h2>
+    <number-input />
   </div>
 </template>
 
