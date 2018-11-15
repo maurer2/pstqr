@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="card-view">
     <h2 class="section-headline">Eingabe&shy;möglichkeiten</h2>
     <number-input />
   </div>
