@@ -19,13 +19,17 @@
 </template>
 
 <script lang="ts">
-  // https://github.com/vuejs/vue-class-component
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+// https://github.com/vuejs/vue-class-component
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-  @Component
-  export default class App extends Vue {
-    public postNumber: string = '';
-  };
+@Component
+export default class App extends Vue {
+  public postNumber: string = '';
+
+  public onNumberChanged(value) {
+     console.log('numberChanged', value);
+  }
+}
 </script>
 
 <style lang="pcss">
