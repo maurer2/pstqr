@@ -1,6 +1,6 @@
 <template>
   <div class="card-view">
-    <h2 class="section-headline">Eingabe&shy;möglichkeiten</h2>
+    <h2 class="section-headline">Nummer konvertieren</h2>
     <number-input />
   </div>
 </template>
