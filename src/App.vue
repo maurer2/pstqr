@@ -4,10 +4,10 @@
       Header {{ postNumber }}
     </header>
     <nav class="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/card">Card</router-link>
-      <router-link to="/barcode">Barcode</router-link>
-      <router-link to="/localstorage" disabled>LocalStorage</router-link>
+      <router-link class="router-link" to="/">Home</router-link>
+      <router-link class="router-link" to="/card">Card</router-link>
+      <router-link class="router-link" to="/barcode">Barcode</router-link>
+      <router-link class="router-link" to="/localstorage">LocalStorage</router-link>
     </nav>
     <main class="main">
       <router-view/>
@@ -19,20 +19,20 @@
 </template>
 
 <script lang="ts">
-// https://github.com/vuejs/vue-class-component
-import { Component, Prop, Vue } from 'vue-property-decorator';
+  // https://github.com/vuejs/vue-class-component
+  import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
-export default class App extends Vue {
-  public postNumber: string = '';
+  @Component
+  export default class App extends Vue {
+    public postNumber: string = '';
 
-  public onNumberChanged(value) {
-     console.log('numberChanged', value);
+    public onNumberChanged(value: any) {
+       console.log('numberChanged', value);
+    }
   }
-}
 </script>
 
-<style lang="pcss">
+<style>
 @import-normalize;
 
 :root {
@@ -51,12 +51,9 @@ export default class App extends Vue {
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   min-height: 100%;
   height: 100%;
-  background: var(--color-zeta);
+  color: var(--color-delta) var(--color-zeta);
 }
 
 html {
@@ -64,6 +61,8 @@ html {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -72,12 +71,17 @@ body {
   color: var(--color-delta);
 }
 
+a,
 a:link,
 a:visited,
 a:active,
 a:hover {
-  color: inherit;
+  color: var(--color-beta);
   text-decoration: none;
+}
+
+a:disabled {
+  color: #c3c3c3;
 }
 
 .wrapper {
@@ -103,10 +107,20 @@ a:hover {
 
 .nav {
   display: flex;
-  padding: 0.5rem;
   justify-content: space-evenly;
-  background: var(--color-gamma);
-  color: var(--color-zeta);
+  background: var(--color-alpha);
+
+  & .router-link {
+    padding: 0.5rem;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  & .router-link--is-active {
+    font-weight: bold;
+    background: var(--color-zeta);
+    color: var(--color-alpha);
+  }
 }
 
 .main {
@@ -115,11 +129,5 @@ a:hover {
 
 .footer {
   color: var(--color-zeta) var(--color-delta);
-}
-
-.router-link {}
-
-.router-link--is-active {
-  font-weight: bold;
 }
 </style>

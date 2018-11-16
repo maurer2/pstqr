@@ -34,7 +34,7 @@ export default class NumberInput extends Vue {
   }
 
   // methods
-  public calculateNewNumber(element) {
+  public calculateNewNumber(element: any) {
     /*
     const isValidLength = (this.numberOld.length >= 7 && this.numberOld.length <= 9);
     // https://github.com/lodash/lodash/issues/1148

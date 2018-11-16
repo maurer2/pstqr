@@ -1,7 +1,8 @@
 module.exports = {
-    plugins: {
-        'autoprefixer': {},
-        'postcss-short-color': {},
-        'postcss-normalize': {},
-    }
-}
+  plugins: {
+    'autoprefixer': {},
+    'postcss-short-color': {},
+    'postcss-normalize': {},
+    'postcss-nesting': {},
+  }
+};
