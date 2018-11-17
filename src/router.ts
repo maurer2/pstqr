@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import Barcode from './views/Barcode.vue';
-import Card from './views/Card.vue';
+import HomeView from './views/HomeView.vue';
+import BarcodeView from './views/BarcodeView.vue';
+import InputView from './views/InputView.vue';
+import LocalStorageView from './views/LocalStorageView.vue';
 
 Vue.use(Router);
 
@@ -13,20 +14,26 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'homeView',
+      component: HomeView,
     },
     {
-      path: '/barcode',
-      name: 'barcode',
-      component: Barcode,
-      // component: () => import(/* webpackChunkName: "barcode" */ './views/Barcode.vue')
+      path: '/barcodeView',
+      name: 'barcodeView',
+      component: BarcodeView,
+      // component: () => import(/* webpackChunkName: "barcodeView" */ './views/BarcodeView.vue')
     },
     {
-      path: '/card',
-      name: 'card',
-      component: Card,
-      // component: () => import(/* webpackChunkName: "cardInput" */ './views/Card.vue')
+      path: '/inputView',
+      name: 'inputView',
+      component: InputView,
+      // component: () => import(/* webpackChunkName: "inputView" */ './views/inputView.vue')
+    },
+    {
+      path: '/localStorageView',
+      name: 'localStorageView',
+      component: LocalStorageView,
+      // component: () => import(/* webpackChunkName: "localStorageView" */ './views/LocalStorageView.vue')
     },
   ],
 });

@@ -1,41 +1,20 @@
 <template>
   <section class="section localstorage">
-      <h2>Saved Numbers</h2>
-      <ul class="list list-buttons" v-for="number in numberList" :key="number" v-if="numberList.length > 0">
-        <li class="list-entry">
-            <button type="button">{{ number }}</button>
-        </li>
-      </ul>
+    LocalStorage Component
   </section>
 </template>
 
 <script lang="ts">
-    // https://github.com/vuejs/vue-class-component
-    import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+  import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
 
-    @Component
-    export default class LocalStorageClient extends Vue {
-        @Prop({ type: [Boolean, String], default: false, required: false })
-        private numberToSave!: boolean | string;
-
-        private numberList: string[] = [];
-
-        constructor() {
-            super();
-
-            this.numberList.push('123456');
-        }
+  @Component
+  export default class LocalStorageClient extends Vue {
+    constructor() {
+      super();
     }
+  }
 </script>
 
-<style lang="pcss" scoped>
-    .localstorage {
-        height: 100%;
-        background: navajowhite;
-        overflow: hidden;
-    }
+<style scoped>
 
-    .list-buttons {
-        list-style: none;
-    }
 </style>

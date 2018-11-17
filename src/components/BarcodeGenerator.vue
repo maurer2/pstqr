@@ -19,12 +19,11 @@
     }
 
     public initBarcode() {
-      if (this.number.length === 0) {
+      if (this.number.length === 0 || this.$refs.barcode === undefined) {
         return;
       }
 
-      const barcodeDom = this.$refs.barcode;
-      JsBarcode(barcodeDom).init();
+      JsBarcode(this.$refs.barcode).init();
     }
 
     @Watch('number')

@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper" id="app">
     <header class="header">
-      Header
+      <h1 class="title">PSTQR</h1>
     </header>
     <nav class="nav">
       <router-link class="router-link" to="/">Home</router-link>
-      <router-link class="router-link" to="/card">Card</router-link>
-      <router-link class="router-link" to="/barcode">Barcode</router-link>
-      <router-link class="router-link" to="/localstorage">LocalStorage</router-link>
+      <router-link class="router-link" to="/inputView">Input</router-link>
+      <router-link class="router-link" to="/barcodeView">Barcode</router-link>
+      <router-link class="router-link" to="/localStorageView">LocalStorage</router-link>
     </nav>
     <main class="main">
       <router-view/>
@@ -23,13 +23,7 @@
   import { Component, Prop, Vue } from 'vue-property-decorator';
 
   @Component
-  export default class App extends Vue {
-    public postNumber: string = '';
-
-    public onNumberChanged(value: any) {
-       console.log('numberChanged', value);
-    }
-  }
+  export default class App extends Vue {}
 </script>
 
 <style>
@@ -45,6 +39,12 @@
 .header {
   padding: 0.5rem;
   color: var(--color-zeta) var(--color-beta);
+
+  & .title {
+    margin: 0;
+    font-size: 1.75rem;
+    color: var(--color-delta);
+  }
 }
 
 .nav {
@@ -55,7 +55,7 @@
   & .router-link {
     padding: 0.5rem;
     flex-grow: 1;
-    flex-basis: 0;
+    // flex-basis: 0;
   }
 
   & .router-link--is-active {

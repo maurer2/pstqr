@@ -25,6 +25,6 @@
   }
 </script>
 
-<style lang="pcss" scoped>
+<style scoped>
 
 </style>

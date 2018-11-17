@@ -11,12 +11,12 @@
   import BarcodeGenerator from '@/components/BarcodeGenerator.vue';
 
   @Component({
-    name: 'barcode',
+    name: 'BarcodeView',
     components: {
       NumberSelect, BarcodeGenerator,
     },
   })
-  export default class Barcode extends Vue {
+  export default class BarcodeView extends Vue {
     private numbersList!: string[];
     private selectedNumber: string = '';
 
