@@ -1,9 +1,9 @@
 <template>
   <section class="section number-select">
     <h2>Gespeicherte Nummern</h2>
-    <select v-model="selectedNumber" @change="$emit('numberHasChanged', selectedNumber)">
-      <option disabled value="">Nummer Auswählen</option>
-      <option v-for="number in numbersList":key="number">
+    <select class="selectbox" v-model="selectedNumber" @change="$emit('numberHasChanged', selectedNumber)">
+      <option disabled value="">Nummer auswählen</option>
+      <option v-for="number in numbersList" :key="number">
         {{ number }}
       </option>
     </select>
@@ -26,5 +26,10 @@
 </script>
 
 <style scoped>
-
+  .selectbox {
+    padding: 0.5rem;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
 </style>

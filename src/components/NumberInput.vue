@@ -3,7 +3,8 @@
     <fieldset class="fields">
       <div class="form-row">
         <label class="form-label" for="number-old">Alte Nummer:</label>
-        <input class="form-field" name="number-old" id="number-old" v-model="numberOld" autocomplete="off" />
+        <input class="form-field" name="number-old" placeholder="7 bis 9 Zeichen notwendig" type="number"
+          v-model="numberOld" autocomplete="off" />
         <p class="form-error" v-if="showErrorMessage">
           Nummer muss 7 bis 9 Zeichen lang sein!
         </p>

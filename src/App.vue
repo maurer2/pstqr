@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" id="app">
+  <div class="wrapper">
     <header class="header">
       <h1 class="title">PSTQR</h1>
     </header>
@@ -70,6 +70,7 @@
 }
 
 .footer {
+  padding: 0.5rem;
   color: var(--color-zeta) var(--color-delta);
 }
 </style>
