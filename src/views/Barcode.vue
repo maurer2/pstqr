@@ -1,29 +1,33 @@
 <template>
   <div class="barcode-view">
-    <NumberSelect :numbersList="numbersList"/>
-    Barcode
+    <NumberSelect v-if="numbersList.length > 0" :numbersList="numbersList" @numberHasChanged="updateSelectedNumber" />
+    <BarcodeGenerator v-if="selectedNumber.length > 0" :number="selectedNumber"></BarcodeGenerator>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
   import NumberSelect from '@/components/NumberSelect.vue';
+  import BarcodeGenerator from '@/components/BarcodeGenerator.vue';
 
   @Component({
     name: 'barcode',
     components: {
-      NumberSelect,
+      NumberSelect, BarcodeGenerator,
     },
   })
   export default class Barcode extends Vue {
-    public numbersList!: string[];
+    private numbersList!: string[];
+    private selectedNumber: string = '';
 
     constructor() {
       super();
 
-      this.numbersList = ['1235', '456'];
+      this.numbersList = ['12345678901234', '43210987654321']; // dummy
     }
 
-    private mounted() { }
+    private updateSelectedNumber(value: string) {
+      this.selectedNumber = value;
+    }
   }
 </script>

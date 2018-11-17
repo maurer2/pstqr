@@ -1,7 +1,7 @@
 <template>
   <section class="section number-select">
     <h2>Gespeicherte Nummern</h2>
-    <select v-model="selectedNumber">
+    <select v-model="selectedNumber" @change="$emit('numberHasChanged', selectedNumber)">
       <option disabled value="">Nummer Auswählen</option>
       <option v-for="number in numbersList":key="number">
         {{ number }}
