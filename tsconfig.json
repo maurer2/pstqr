@@ -29,7 +29,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "numberGenerator/**/*.js",
+    "NumberGenerator/**/*.js",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],

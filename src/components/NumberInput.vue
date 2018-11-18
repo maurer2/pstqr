@@ -2,72 +2,61 @@
   <form class="section form" @submit.prevent="calculateNewNumber()" autocomplete="off">
     <fieldset class="fields">
       <div class="form-row">
-        <label class="form-label" for="number-old">Alte Nummer:</label>
-        <input class="form-field" name="number-old" placeholder="7 bis 9 Zeichen notwendig" type="number"
-          v-model="numberOld" autocomplete="off" />
-        <p class="form-error" v-if="showErrorMessage">
+        <label class="form-label" for="number">Alte Nummer:</label>
+        <input class="form-field" name="number" id="number" placeholder="7 bis 9 Zeichen notwendig" type="number"
+          autocomplete="off" v-model="number" />
+        <p class="form-error" v-if="!isValidInput">
           Nummer muss 7 bis 9 Zeichen lang sein!
         </p>
       </div>
-      <div class="form-row">
+      <div class="form-row" v-if="isValidInput">
         <button type="submit" class="form-button" @click="$emit('newNumber', numberNew)">Submit</button>
       </div>
     </fieldset>
-    <div class="results">
-      Neue Nummer: <span>{{ numberNew }}</span>
+    <div class="results" v-if="isValidInput">
+      Neue Nummer: <span>{{ numberCalculated }}</span>
     </div>
   </form>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+  /// <reference path="../../NumberGenerator/javascript/LuhnDigit.d.ts" />
+  // import LuhnChecker from '../../NumberGenerator/javascript/LuhnDigit';
+  /// <reference path="../../NumberGenerator/javascript/PostNumber.d.ts" />
+  import PostnumberConverter from '../../NumberGenerator/javascript/PostNumber';
 
   @Component
   export default class NumberInput extends Vue {
     // data
-    private numberOld: string = '';
+    private number: string = '';
     private numberCalculated: string = '';
-    private showErrorMessage: boolean = false;
+    private isValidInput: boolean = false;
+    private numberConverter: PostnumberConverter;
 
     constructor() {
       super();
+
+      this.numberConverter = new PostnumberConverter();
     }
 
-    // calculated properties
-    get numberNew() {
-      return this.numberCalculated;
-    }
-
-    // methods
-    public calculateNewNumber() {
-      /*
-      const isValidLength = (this.numberOld.length >= 7 && this.numberOld.length <= 9);
-      // https://github.com/lodash/lodash/issues/1148
-      const isNumber = true; // dummy
-
-      // number 7 to 9 digits
-      if (isValidLength && isNumber) {
-        // this.numberCalculated =
-      }
-      */
-    }
-
-    @Watch('numberOld')
-    public onNumberOldChanged(value: string) {
+    @Watch('number')
+    private onNumberChanged(value: string) {
       const isValidLength = (value.length >= 7 && value.length <= 9);
+      const isValidNumber = !Number.isNaN(parseInt(value, 10));
 
-      if (isValidLength) {
-        this.numberCalculated = value;
-        this.showErrorMessage = false;
-        this.$store.commit('addCalculatedNumber', value);
+      if (isValidLength && isValidNumber) {
+        this.numberCalculated = this.numberConverter.getNewPostNumber(parseInt(value, 10));
+        this.isValidInput = true;
+        this.$store.commit('addCalculatedNumber', this.numberCalculated);
       } else {
-          this.showErrorMessage = true;
+          this.isValidInput = false;
           this.$store.commit('addCalculatedNumber', '');
       }
     }
 
     @Watch('numberCalculated')
-    public numberCalculatedChanged(value: string) {
+    private numberCalculatedChanged(value: string) {
       this.$emit('numberChanged', value);
     }
   }
@@ -103,6 +92,12 @@
   .form-field,
   .form-button {
     padding: 0.5rem;
+  }
+
+  .form-field::-webkit-inner-spin-button,
+  .form-field::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   .form-error {
