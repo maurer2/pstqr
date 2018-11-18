@@ -1,0 +1,3 @@
+[submodule "NumberGenerator"]
+	path = NumberGenerator
+	url = git@github.com:maurer2/NumberGenerator.git
