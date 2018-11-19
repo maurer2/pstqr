@@ -1,22 +1,27 @@
 <template>
   <form class="section form" @submit.prevent="calculateNumber" autocomplete="off" novalidate>
+    <output class="results" v-if="isValidInput && numberCalculated.length > 0">
+      <span class="key">Neue Nummer:</span>
+      <span class="value">{{ numberCalculated }}</span>
+    </output>
     <fieldset class="fields">
       <div class="form-row">
-        <label class="form-label" for="number">Alte Nummer:</label>
+        <label class="form-label" for="number">
+          Alte Nummer
+          <span class="counter" :class="counterClass" v-if="number.length > 0">
+            ({{ number.length }} Zeichen eingegeben)
+          </span>
+        </label>
         <input class="form-field" name="number" id="number" placeholder="7 bis 9 Zeichen notwendig" type="number"
           autocomplete="off" pattern="[0-9]*" inputmode="numeric" v-model="number" />
         <p class="form-error" v-if="!isValidInput">
-          Nummer muss 7 bis 9 Zeichen lang sein!
+          Nummer muss eine Zahl sein und 7 bis 9 Zeichen lang sein!
         </p>
       </div>
       <div class="form-row">
         <button type="submit" class="form-button">Submit</button>
       </div>
     </fieldset>
-    <div class="results" v-if="isValidInput && numberCalculated.length > 0">
-      <span class="key">Neue Nummer:</span>
-      <span class="value">{{ numberCalculated }}</span>
-    </div>
   </form>
 </template>
 
@@ -54,6 +59,10 @@
       }
     }
 
+    get counterClass() {
+      return (this.number.length >= 7 && this.number.length <= 9) ? 'counter--is-valid' : 'counter--is-invalid';
+    }
+
     @Watch('numberCalculated')
     private onNumberCalculatedChange() {
       this.$store.commit('addCalculatedNumber', this.numberCalculated);
@@ -81,6 +90,18 @@
 
   .form-label {
     margin-bottom: 0.5rem;
+
+    & .counter {
+      font-size: 0.85rem;
+    }
+
+    & .counter--is-valid {
+      color: var(--color-positive);
+    }
+
+    & .counter--is-invalid {
+      color: var(--color-negative);
+    }
   }
 
   .form-field,
@@ -97,14 +118,13 @@
   .form-error {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    color: red;
-
-    &:empty {
-      display: none;
-    }
+    color: var(--color-negative);
+    font-size: 0.85rem;
   }
 
   .results {
+    display: block;
+    margin-bottom: 1rem;
     padding: 1rem;
     text-align: center;
     color: var(--color-alpha) var(--color-gamma);

@@ -1,6 +1,6 @@
 <template>
   <div class="card-view">
-    <h2 class="section-headline">Nummern eingeben oder scannen</h2>
+    <h2 class="section-headline">Nummer eingeben</h2>
     <number-input />
   </div>
 </template>
