@@ -1,7 +1,10 @@
 <template>
-  <section class="section barcode-generator">
-    <div class="responsive-embed">
-      <video ref="scanner" class="responsive-content" autoplay></video>
+  <section class="section image-capture">
+    <div class="responsive-embed" v-if="cameraIsAvailable">
+      <video class="responsive-content" ref="scanner" autoplay></video>
+    </div>
+    <div class="error" v-else>
+      Leider konnte auf die Kamera nicht zugeriffen werden.
     </div>
   </section>
 </template>
@@ -11,6 +14,8 @@
 
   @Component
   export default class ImageCapturing extends Vue {
+    private cameraIsAvailable: boolean = true;
+
     private mounted() {
       const videoElement: HTMLVideoElement = this.$refs.scanner as HTMLVideoElement;
 
@@ -20,6 +25,7 @@
           videoElement.play();
         })
         .catch((error) => {
+          this.cameraIsAvailable = false;
           console.log(error);
         });
     }
@@ -27,6 +33,10 @@
 </script>
 
 <style scoped>
+  .image-capture {
+    text-align: left;
+  }
+
   .responsive-embed {
     position: relative;
     width: 100%;
