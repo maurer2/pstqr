@@ -4,42 +4,20 @@
     <number-input />
 
     <h2 class="section-headline">Scan Card</h2>
-    <video ref="scanner" id="scanner" autoplay></video>
+    <image-capturing />
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
   import NumberInput from '@/components/NumberInput.vue';
+  import ImageCapturing from '@/components/ImageCapturing.vue';
 
   @Component({
     name: 'InputView',
     components: {
-        NumberInput,
+        NumberInput, ImageCapturing,
     },
   })
-  export default class InputView extends Vue {
-    private mounted() {
-      const videoElement: any = this.$refs.scanner;
-
-      navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-        .then((mediaStream) => {
-          videoElement.srcObject = mediaStream;
-          videoElement.onloadedmetadata = (e: any) => {
-            videoElement.play();
-          };
-        })
-        .catch((error) => {
-           console.log(error);
-        });
-    }
-  }
+  export default class InputView extends Vue {}
 </script>
-
-<style scoped>
-  #scanner {
-    width: 100%;
-    height: auto;
-  }
-</style>
-
