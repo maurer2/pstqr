@@ -2,6 +2,9 @@
   <section class="section image-capture">
     <div class="responsive-embed" v-if="cameraIsAvailable">
       <video class="responsive-content" ref="scanner" autoplay></video>
+      <a href="#" class="responsive-overlay" @click.prevent="stopVideo">
+        Capture
+      </a>
     </div>
     <div class="error" v-else>
       Leider konnte auf die Kamera nicht zugeriffen werden.
@@ -15,20 +18,31 @@
   @Component
   export default class ImageCapturing extends Vue {
     private cameraIsAvailable: boolean = true;
+    private videoElement!: HTMLVideoElement;
 
     private mounted() {
-      const videoElement: HTMLVideoElement = this.$refs.scanner as HTMLVideoElement;
+      this.videoElement = this.$refs.scanner as HTMLVideoElement;
 
+      this.startVideo();
+    }
+
+    private startVideo() {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then((mediaStream: MediaStream) => {
-          videoElement.srcObject = mediaStream;
-          videoElement.play();
+            this.videoElement.srcObject = mediaStream;
+            this.videoElement.play();
         })
         .catch((error) => {
-          this.cameraIsAvailable = false;
-          console.log(error);
+            this.cameraIsAvailable = false;
+            console.log(error);
         });
     }
+
+    private stopVideo() {
+      this.videoElement.pause();
+    }
+
+    // private captureImage() {}
   }
 </script>
 
@@ -53,5 +67,13 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  .responsive-overlay {
+    position: absolute;
+    left: 50%;
+    padding: 0.5rem;
+    transform: translateX(-50%);
+    color: var(--color-zeta) var(--color-alpha);
   }
 </style>
