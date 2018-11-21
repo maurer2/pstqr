@@ -1,10 +1,16 @@
 <template>
   <section class="section image-capture">
     <div class="responsive-embed" v-if="cameraIsAvailable">
-      <video class="responsive-content" ref="scanner" autoplay></video>
-      <a href="#" class="responsive-overlay" @click.prevent="stopVideo">
-        Capture
-      </a>
+      <video class="video" ref="scanner" autoplay></video>
+      <div class="overlay">
+        <button type="button" class="button" @click.prevent="toggleVideoState">
+          <span class="text" v-if="videoIsPlaying">Stop</span>
+          <span class="text" v-else>Start</span>
+        </button>
+        <button type="button" class="button" @click.prevent="captureVideo" disabled>
+          Capture
+        </button>
+      </div>
     </div>
     <div class="error" v-else>
       Leider konnte auf die Kamera nicht zugeriffen werden.
@@ -19,6 +25,7 @@
   export default class ImageCapturing extends Vue {
     private cameraIsAvailable: boolean = true;
     private videoElement!: HTMLVideoElement;
+    private videoIsPlaying: boolean = false;
 
     private mounted() {
       this.videoElement = this.$refs.scanner as HTMLVideoElement;
@@ -30,7 +37,14 @@
       navigator.mediaDevices.getUserMedia({ video: true })
         .then((mediaStream: MediaStream) => {
             this.videoElement.srcObject = mediaStream;
-            this.videoElement.play();
+            this.videoElement.play()
+              .then(() => {
+                  this.videoIsPlaying = true;
+              })
+              .catch((error) => {
+                  this.videoIsPlaying = false;
+                  console.log(error);
+              });
         })
         .catch((error) => {
             this.cameraIsAvailable = false;
@@ -38,11 +52,23 @@
         });
     }
 
-    private stopVideo() {
-      this.videoElement.pause();
+    private toggleVideoState() {
+      if (this.videoElement.paused) {
+        this.videoElement.play()
+          .then(() => {
+            this.videoIsPlaying = true;
+          })
+          .catch((error) => {
+              this.videoIsPlaying = false;
+              console.log(error);
+          });
+      } else {
+          this.videoElement.pause();
+          this.videoIsPlaying = false;
+      }
     }
 
-    // private captureImage() {}
+    // private captureVideo(){}
   }
 </script>
 
@@ -58,7 +84,7 @@
     overflow: hidden;
   }
 
-  .responsive-content {
+  .video {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -69,11 +95,15 @@
     object-fit: contain;
   }
 
-  .responsive-overlay {
+  .overlay {
     position: absolute;
     left: 50%;
     padding: 0.5rem;
     transform: translateX(-50%);
     color: var(--color-zeta) var(--color-alpha);
+  }
+
+  .button {
+    padding: 0.5rem;
   }
 </style>

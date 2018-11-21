@@ -3,7 +3,7 @@
     <h2 class="section-headline">Nummer eingeben</h2>
     <number-input />
 
-    <h2 class="section-headline">Scan Card</h2>
+    <h2 class="section-headline">Scan Card with Google Mobile Vision</h2>
     <image-capturing />
   </div>
 </template>
