@@ -24,6 +24,10 @@
       super();
 
       this.numbersList = ['12345678901234', '43210987654321']; // dummy
+
+      if (this.$store.state.convertedNumber.length > 0) {
+        this.numbersList = this.numbersList.concat(this.$store.state.convertedNumber);
+      }
     }
 
     private updateSelectedNumber(value: string) {

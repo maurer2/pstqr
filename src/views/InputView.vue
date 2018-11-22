@@ -1,10 +1,10 @@
 <template>
   <div class="card-view">
     <h2 class="section-headline">Nummer eingeben</h2>
-    <number-input />
+    <NumberInput />
 
     <h2 class="section-headline">Scan Card with Google Mobile Vision</h2>
-    <image-capturing />
+    <ImageCapturing />
   </div>
 </template>
 

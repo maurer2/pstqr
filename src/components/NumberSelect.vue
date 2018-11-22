@@ -29,7 +29,6 @@
   .selectbox {
     padding: 0.5rem;
     border-radius: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
   }
 </style>

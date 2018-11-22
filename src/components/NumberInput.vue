@@ -53,10 +53,12 @@
       if (isValidLength && isValidNumber) {
           this.numberCalculated = this.numberConverter.getNewPostNumber(parseInt(this.number, 10));
           this.isValidInput = true;
-      } else {
-          this.numberCalculated = '';
-          this.isValidInput = false;
+
+          return;
       }
+
+      this.numberCalculated = '';
+      this.isValidInput = false;
     }
 
     get counterClass() {

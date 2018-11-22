@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="error" v-else>
-      Leider konnte auf die Kamera nicht zugeriffen werden.
+      Leider konnte auf die Kamera nicht zugegriffen werden.
     </div>
   </section>
 </template>
