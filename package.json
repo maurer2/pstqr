@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "serve:https": "vue-cli-service serve --https",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "install:submodule": "git clone git@github.com:maurer2/NumberGenerator.git ./NumberGenerator"
   },
   "dependencies": {
     "@types/lodash": "^4.14.110",
