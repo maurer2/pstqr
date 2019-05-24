@@ -27,7 +27,7 @@
 </script>
 
 <style>
-@import-normalize;
+@import '~normalize.css';
 @import 'global.css';
 
 .wrapper {
