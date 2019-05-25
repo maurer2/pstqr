@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   root: true,
   parserOptions: {
@@ -18,7 +20,6 @@ module.exports = {
     "vue",
     "@typescript-eslint"
   ],
-  // add your custom rules here
   rules: {
     "no-debugger": "off",
     "no-console": "off",
@@ -41,9 +42,28 @@ module.exports = {
     }],
     "indent": "off",
     "@typescript-eslint/indent": ["error", 2],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
+    ]
   },
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        extensions: ['.js', '.vue', '.ts'],
+        map: [
+          ['@', path.resolve(__dirname, './src')],
+        ],
+      },
+    },
+  }
 }

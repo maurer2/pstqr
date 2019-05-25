@@ -21,19 +21,21 @@ export default new Router({
       path: '/barcodeView',
       name: 'barcodeView',
       component: BarcodeView,
-      // component: () => import(/* webpackChunkName: "barcodeView" */ './views/BarcodeView.vue')
+      // component: () => import(webpackChunkName: "barcodeView" './views/BarcodeView.vue')
     },
     {
       path: '/inputView',
       name: 'inputView',
       component: InputView,
-      // component: () => import(/* webpackChunkName: "inputView" */ './views/inputView.vue')
+      // component: () => import(webpackChunkName: "inputView" './views/inputView.vue')
     },
     {
       path: '/localStorageView',
       name: 'localStorageView',
       component: LocalStorageView,
-      // component: () => import(/* webpackChunkName: "localStorageView" */ './views/LocalStorageView.vue')
+      // component: () => import(
+      //  webpackChunkName: "localStorageView" './views/LocalStorageView.vue'
+      // )
     },
   ],
 });

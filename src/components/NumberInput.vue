@@ -59,9 +59,9 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-/// <reference path="../../NumberGenerator/javascript/LuhnDigit.d.ts" />
+// <reference path="../../NumberGenerator/javascript/LuhnDigit.d.ts" />
 // import LuhnChecker from '../../NumberGenerator/javascript/LuhnDigit';
-/// <reference path="../../NumberGenerator/javascript/PostNumber.d.ts" />
+// <reference path="../../NumberGenerator/javascript/PostNumber.d.ts" />
 import PostnumberConverter from '../../NumberGenerator/javascript/PostNumber';
 
 @Component
@@ -104,7 +104,7 @@ export default class NumberInput extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
   .form {
     text-align: left;
   }
