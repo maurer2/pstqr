@@ -1,9 +1,21 @@
 <template>
   <section class="section number-select">
     <h2>Gespeicherte Nummern</h2>
-    <select class="selectbox" v-model="selectedNumber" @change="$emit('numberHasChanged', selectedNumber)">
-      <option disabled value="">Nummer auswählen</option>
-      <option v-for="number in numbersList" :key="number">
+    <select
+      v-model="selectedNumber"
+      class="selectbox"
+      @change="$emit('numberHasChanged', selectedNumber)"
+    >
+      <option
+        disabled
+        value=""
+      >
+        Nummer auswählen
+      </option>
+      <option
+        v-for="number in numbersList"
+        :key="number"
+      >
         {{ number }}
       </option>
     </select>
@@ -14,15 +26,14 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-  @Component
-  export default class NumberSelect extends Vue {
-    @Prop({ type: Array, default: () => [] })
-    private numbersList!: [];
+@Component
+export default class NumberSelect extends Vue {
+  @Prop({ type: Array, default: () => [] }) private numbersList!: [];
 
-    private selectedNumber = '' as string;
-  }
+  private selectedNumber = '' as string;
+}
 </script>
 
 <style scoped>

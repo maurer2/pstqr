@@ -1,23 +1,27 @@
 <template>
   <div class="card-view">
-    <h2 class="section-headline">Nummer eingeben</h2>
+    <h2 class="section-headline">
+      Nummer eingeben
+    </h2>
     <NumberInput />
 
-    <h2 class="section-headline">Scan Card with Google Mobile Vision</h2>
+    <h2 class="section-headline">
+      Scan Card with Google Mobile Vision
+    </h2>
     <ImageCapturing />
   </div>
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-  import NumberInput from '@/components/NumberInput.vue';
-  import ImageCapturing from '@/components/ImageCapturing.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import NumberInput from '@/components/NumberInput.vue';
+import ImageCapturing from '@/components/ImageCapturing.vue';
 
-  @Component({
-    name: 'InputView',
-    components: {
-        NumberInput, ImageCapturing,
-    },
-  })
-  export default class InputView extends Vue {}
+@Component({
+  name: 'InputView',
+  components: {
+    NumberInput, ImageCapturing,
+  },
+})
+export default class InputView extends Vue {}
 </script>

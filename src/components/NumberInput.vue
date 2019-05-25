@@ -1,75 +1,107 @@
 <template>
-  <form class="section form" @submit.prevent="calculateNumber" autocomplete="off" novalidate>
-    <output class="results" v-if="isValidInput && numberCalculated.length > 0">
+  <form
+    class="section form"
+    autocomplete="off"
+    novalidate
+    @submit.prevent="calculateNumber"
+  >
+    <output
+      v-if="isValidInput && numberCalculated.length > 0"
+      class="results"
+    >
       <span class="key">Neue Nummer:</span>
       <span class="value">{{ numberCalculated }}</span>
     </output>
     <fieldset class="fields">
       <div class="form-row">
-        <label class="form-label" for="number">
+        <label
+          class="form-label"
+          for="number"
+        >
           Alte Nummer
-          <span class="counter" :class="counterClass" v-if="number.length > 0">
+          <span
+            v-if="number.length > 0"
+            class="counter"
+            :class="counterClass"
+          >
             ({{ number.length }} Zeichen eingegeben)
           </span>
         </label>
-        <input class="form-field" name="number" id="number" placeholder="7 bis 9 Zeichen notwendig" type="number"
-          autocomplete="off" pattern="[0-9]*" inputmode="numeric" v-model="number" />
-        <p class="form-error" v-if="!isValidInput">
+        <input
+          id="number"
+          v-model="number"
+          class="form-field"
+          name="number"
+          placeholder="7 bis 9 Zeichen notwendig"
+          type="number"
+          autocomplete="off"
+          pattern="[0-9]*"
+          inputmode="numeric"
+        >
+        <p
+          v-if="!isValidInput"
+          class="form-error"
+        >
           Nummer muss eine Zahl sein und 7 bis 9 Zeichen lang sein!
         </p>
       </div>
       <div class="form-row">
-        <button type="submit" class="form-button">Submit</button>
+        <button
+          type="submit"
+          class="form-button"
+        >
+          Submit
+        </button>
       </div>
     </fieldset>
   </form>
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-  /// <reference path="../../NumberGenerator/javascript/LuhnDigit.d.ts" />
-  // import LuhnChecker from '../../NumberGenerator/javascript/LuhnDigit';
-  /// <reference path="../../NumberGenerator/javascript/PostNumber.d.ts" />
-  import PostnumberConverter from '../../NumberGenerator/javascript/PostNumber';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+/// <reference path="../../NumberGenerator/javascript/LuhnDigit.d.ts" />
+// import LuhnChecker from '../../NumberGenerator/javascript/LuhnDigit';
+/// <reference path="../../NumberGenerator/javascript/PostNumber.d.ts" />
+import PostnumberConverter from '../../NumberGenerator/javascript/PostNumber';
 
-  @Component
-  export default class NumberInput extends Vue {
-    // data
-    private number: string = '';
-    private numberCalculated: string = '';
-    private isValidInput: boolean = true;
-    private numberConverter: PostnumberConverter;
+@Component
+export default class NumberInput extends Vue {
+  // data
+  private number: string = '';
+  private numberCalculated: string = '';
+  private isValidInput: boolean = true;
+  private numberConverter: PostnumberConverter;
 
-    constructor() {
-      super();
+  constructor() {
+    super();
 
-      this.numberConverter = new PostnumberConverter();
-    }
-
-    private calculateNumber() {
-      const isValidLength = (this.number.length >= 7 && this.number.length <= 9);
-      const isValidNumber = !Number.isNaN(parseInt(this.number, 10));
-
-      if (isValidLength && isValidNumber) {
-          this.numberCalculated = this.numberConverter.getNewPostNumber(parseInt(this.number, 10));
-          this.isValidInput = true;
-
-          return;
-      }
-
-      this.numberCalculated = '';
-      this.isValidInput = false;
-    }
-
-    get counterClass() {
-      return (this.number.length >= 7 && this.number.length <= 9) ? 'counter--is-valid' : 'counter--is-invalid';
-    }
-
-    @Watch('numberCalculated')
-    private onNumberCalculatedChange() {
-      this.$store.commit('addCalculatedNumber', this.numberCalculated);
-    }
+    this.numberConverter = new PostnumberConverter();
   }
+
+  private calculateNumber() {
+    const isValidLength = (this.number.length >= 7 && this.number.length <= 9);
+    const isValidNumber = !Number.isNaN(parseInt(this.number, 10));
+
+    if (isValidLength && isValidNumber) {
+      this.numberCalculated = this.numberConverter.getNewPostNumber(parseInt(this.number, 10));
+      this.isValidInput = true;
+
+      return;
+    }
+
+    this.numberCalculated = '';
+    this.isValidInput = false;
+  }
+
+  get counterClass() {
+    return (this.number.length >= 7 && this.number.length <= 9) ? 'counter--is-valid' : 'counter--is-invalid';
+  }
+
+  @Watch('numberCalculated')
+  private onNumberCalculatedChange() {
+    this.$store.commit('addCalculatedNumber', this.numberCalculated);
+  }
+}
 </script>
 
 <style scoped>

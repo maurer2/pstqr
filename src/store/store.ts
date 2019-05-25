@@ -8,7 +8,7 @@ export default new Vuex.Store({
     convertedNumber: '' as string,
   },
   mutations: {
-      addCalculatedNumber(state, value) {
+    addCalculatedNumber(state, value) {
       state.convertedNumber = value;
     },
   },

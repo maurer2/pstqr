@@ -1,16 +1,38 @@
 <template>
   <div class="wrapper">
     <header class="header">
-      <h1 class="title">PSTQR</h1>
+      <h1 class="title">
+        PSTQR
+      </h1>
     </header>
     <nav class="nav">
-      <router-link class="router-link" to="/">Home</router-link>
-      <router-link class="router-link" to="/inputView">Input</router-link>
-      <router-link class="router-link" to="/barcodeView">Barcode</router-link>
-      <router-link class="router-link" to="/localStorageView">LocalStorage</router-link>
+      <router-link
+        class="router-link"
+        to="/"
+      >
+        Home
+      </router-link>
+      <router-link
+        class="router-link"
+        to="/inputView"
+      >
+        Input
+      </router-link>
+      <router-link
+        class="router-link"
+        to="/barcodeView"
+      >
+        Barcode
+      </router-link>
+      <router-link
+        class="router-link"
+        to="/localStorageView"
+      >
+        LocalStorage
+      </router-link>
     </nav>
     <main class="main">
-      <router-view/>
+      <router-view />
     </main>
     <footer class="footer">
       Footer
@@ -19,11 +41,10 @@
 </template>
 
 <script lang="ts">
-  // https://github.com/vuejs/vue-class-component
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
-  @Component
-  export default class App extends Vue {}
+@Component
+export default class App extends Vue {}
 </script>
 
 <style>
