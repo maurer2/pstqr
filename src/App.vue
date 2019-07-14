@@ -50,7 +50,9 @@ export default class App extends Vue {}
 <style>
 @import '~normalize.css';
 @import 'global.css';
+</style>;
 
+<style scoped>
 .wrapper {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -76,7 +78,6 @@ export default class App extends Vue {}
   & .router-link {
     padding: 0.5rem;
     flex-grow: 1;
-    // flex-basis: 0;
   }
 
   & .router-link--is-active {

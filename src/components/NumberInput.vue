@@ -66,15 +66,12 @@ import PostnumberConverter from '../../NumberGenerator/javascript/PostNumber';
 
 @Component
 export default class NumberInput extends Vue {
-  // data
   private number: string = '';
   private numberCalculated: string = '';
   private isValidInput: boolean = true;
-  private numberConverter: PostnumberConverter;
+  private numberConverter!: PostnumberConverter;
 
-  constructor() {
-    super();
-
+  mounted() {
     this.numberConverter = new PostnumberConverter();
   }
 
@@ -141,6 +138,8 @@ export default class NumberInput extends Vue {
   .form-field,
   .form-button {
     padding: 0.5rem;
+    background: white;
+    border: 1px solid var(--color-delta);
   }
 
   .form-field::-webkit-inner-spin-button,

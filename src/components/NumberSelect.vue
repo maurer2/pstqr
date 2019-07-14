@@ -30,7 +30,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NumberSelect extends Vue {
-  @Prop({ type: Array, default: () => [] }) private numbersList!: [];
+  @Prop({ default: () => [] }) private numbersList!: [];
 
   private selectedNumber = '' as string;
 }
