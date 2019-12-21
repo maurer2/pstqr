@@ -97,7 +97,7 @@ export default class ImageCapturing extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
   .image-capture {
     text-align: left;
   }

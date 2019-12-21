@@ -36,7 +36,7 @@ export default class NumberSelect extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
   .selectbox {
     padding: 0.5rem;
     border-radius: 0;

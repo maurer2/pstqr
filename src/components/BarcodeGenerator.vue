@@ -43,7 +43,7 @@ export default class BarcodeGenerator extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
   .barcode {
     display: block;
     margin: auto;

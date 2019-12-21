@@ -71,6 +71,6 @@ export default class LocalStorageClient extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 
 </style>

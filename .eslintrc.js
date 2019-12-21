@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   root: true,
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: "@typescript-eslint/parser",
   },
@@ -9,11 +10,11 @@ module.exports = {
     browser: true,
   },
   extends: [
-    "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:vue/recommended",
-    "plugin:import/typescript",
-    "@vue/typescript",
+    'plugin:import/typescript',
+    'plugin:vue/recommended',
+    'plugin:vue/strongly-recommended',
+    'airbnb-base',
+    '@vue/typescript'
   ],
   // required to lint *.vue files
   plugins: [
@@ -50,11 +51,15 @@ module.exports = {
           "state"
         ]
       }
-    ]
-  },
-  "parser": "vue-eslint-parser",
-  "parserOptions": {
-    "parser": "@typescript-eslint/parser",
+    ],
+    'vue/attributes-order': 'off',
+    'vue/max-attributes-per-line': ['error', {
+      singleline: 3,
+      multiline: {
+        max: 1,
+        allowFirstLine: false,
+      },
+    }],
   },
   settings: {
     'import/resolver': {

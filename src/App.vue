@@ -52,7 +52,7 @@ export default class App extends Vue {}
 @import 'global.css';
 </style>;
 
-<style scoped>
+<style scoped lang="postcss">
 .wrapper {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
