@@ -20,11 +20,11 @@ import JsBarcode from 'jsbarcode';
 export default class BarcodeGenerator extends Vue {
   @Prop({ type: [Boolean, String], default: false, required: true }) private number!: string;
 
-  public mounted() {
+  private mounted() {
     this.initBarcode();
   }
 
-  public initBarcode() {
+  private initBarcode() {
     if (this.number.length === 0 || this.$refs.barcode === undefined) {
       return;
     }
@@ -33,7 +33,7 @@ export default class BarcodeGenerator extends Vue {
   }
 
   @Watch('number')
-  public onPropertyChanged(newValue: string) {
+  private onPropertyChanged(newValue: string) {
     this.$nextTick().then(() => {
       if (newValue.length > 0) {
         this.initBarcode();

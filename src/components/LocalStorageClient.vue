@@ -33,7 +33,7 @@ export default class LocalStorageClient extends Vue {
   private localStorageIsSupported: boolean = false;
   private uniqueKey: string = 'PSTQR';
 
-  mounted() {
+  private mounted() {
     try {
       const keyName = `${this.uniqueKey}-isSupported`;
 

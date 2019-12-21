@@ -71,7 +71,7 @@ export default class NumberInput extends Vue {
   private isValidInput: boolean = true;
   private numberConverter!: PostnumberConverter;
 
-  mounted() {
+  private mounted() {
     this.numberConverter = new PostnumberConverter();
   }
 
@@ -90,7 +90,7 @@ export default class NumberInput extends Vue {
     this.isValidInput = false;
   }
 
-  get counterClass() {
+  private get counterClass() {
     return (this.number.length >= 7 && this.number.length <= 9) ? 'counter--is-valid' : 'counter--is-invalid';
   }
 

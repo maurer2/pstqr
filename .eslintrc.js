@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
   },
   env: {
     browser: true,
@@ -18,37 +18,37 @@ module.exports = {
   ],
   // required to lint *.vue files
   plugins: [
-    "vue",
-    "@typescript-eslint"
+    'vue',
+    '@typescript-eslint'
   ],
   rules: {
-    "no-debugger": "off",
-    "no-console": "off",
-    "lines-between-class-members": "off",
-    'object-curly-newline': ['warn', {
-      /*
-      ObjectExpression: {
-        multiline: true,
-        minProperties: 1,
-        consistent: true
-      },
-      */
-      ObjectPattern: {
-        multiline: true,
-        minProperties: 2,
-        consistent: true
-      },
-      ImportDeclaration: 'never',
-      ExportDeclaration: 'never'
-    }],
-    "indent": "off",
-    "@typescript-eslint/indent": ["error", 2],
-    "no-param-reassign": [
-      "error",
+    'no-debugger': 'off',
+    'no-console': 'off',
+    'lines-between-class-members': 'off',
+    'object-curly-newline': [
+      'error', {
+        ObjectExpression: {
+          minProperties: 3,
+          consistent: true,
+          multiline: true,
+        },
+        ObjectPattern: {
+          minProperties: 3,
+          consistent: true,
+          multiline: true,
+        },
+      }
+    ],
+    indent: [
+      'error', 
+      2
+    ],
+    'no-param-reassign': [
+      'error',
       {
-        "props": true,
-        "ignorePropertyModificationsFor": [
-          "state"
+        'props': true,
+        'ignorePropertyModificationsFor': [
+          'state'
         ]
       }
     ],

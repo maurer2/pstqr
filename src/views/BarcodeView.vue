@@ -27,9 +27,7 @@ export default class BarcodeView extends Vue {
   private numbersList!: string[];
   private selectedNumber: string = '';
 
-  constructor() {
-    super();
-
+  private mounted() {
     this.numbersList = ['12345678901234', '43210987654321']; // dummy
 
     if (this.$store.state.convertedNumber.length > 0) {
