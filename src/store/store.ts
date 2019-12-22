@@ -5,16 +5,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    convertedNumber: '' as string,
+    barcodeNumbers: [] as string[],
   },
   mutations: {
-    addCalculatedNumber(state, value): void {
-      state.convertedNumber = value;
+    addBarcodeNumber(state, number): void {
+      const newBarcodeNumbers = [...state.barcodeNumbers];
+
+      newBarcodeNumbers.push(number);
+      state.barcodeNumbers = newBarcodeNumbers;
     },
   },
   actions: {
-    addCalculatedNumber(store, value): void {
-      store.commit('addCalculatedNumber', value);
+    addBarcodeNumber(store, number): void {
+      store.commit('addBarcodeNumber', number);
     },
   },
 });

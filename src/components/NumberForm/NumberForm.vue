@@ -31,7 +31,6 @@
         </button>
       </div>
     </fieldset>
-
     <fieldset class="fields" v-if="showResult">
       <div class="form-row">
         <output class="results">
@@ -63,7 +62,9 @@ import PostnumberConverter from '../../../NumberGenerator/javascript/PostNumber'
 @Component({
   filters: {
     addLeadingZero(number: number, targetLength: number = 2): string {
-      if (!number) return '';
+      if (!number) {
+        return '';
+      }
 
       return number.toString().padStart(targetLength, '0');
     },
@@ -95,7 +96,7 @@ export default class NumberForm extends Vue {
   }
 
   private addNumberToStore(): void {
-    console.log('add to store', this.number);
+    this.$store.commit('addBarcodeNumber', this.numberCalculated);
   }
 
   private resetForm(): void {
@@ -113,10 +114,12 @@ export default class NumberForm extends Vue {
     return this.isValidInput && this.numberCalculated.length > 0;
   }
 
+  /*
   @Watch('numberCalculated')
   private onNumberCalculatedChange(): void {
     this.$store.commit('addCalculatedNumber', this.numberCalculated);
   }
+  */
 }
 </script>
 
