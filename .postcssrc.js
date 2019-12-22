@@ -3,8 +3,6 @@ module.exports = {
     'autoprefixer': {},
     'postcss-short-color': {},
     'postcss-nesting': {},
-    'postcss-normalize': {
-      forceImport: true,
-    },
+    'postcss-normalize': {},
   }
 };

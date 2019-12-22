@@ -9,10 +9,11 @@
       <template v-for="(route, routeName) in routesMap">
         <router-link
           class="link"
+          active-class="link--is-active"
+          exact-active-class="link--is-active"
+          exact
           :to="route"
           :key="route"
-          active-class="link--is-active"
-          exact
         >
           {{ routeName }}
         </router-link>
@@ -41,9 +42,10 @@ export default class App extends Vue {
 }
 </script>
 
-<style>
+<style lang="postcss">
+@import 'normalize';
 @import 'global.css';
-</style>;
+</style>
 
 <style scoped lang="postcss">
 .wrapper {
