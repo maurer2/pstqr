@@ -3,24 +3,27 @@
     <h2 class="section-headline">
       Nummer eingeben
     </h2>
-    <NumberInput />
+    <NumberForm />
 
-    <h2 class="section-headline">
-      Scan Card with Google Mobile Vision
-    </h2>
-    <ImageCapturing />
+    <template v-if="false">
+      <h2 class="section-headline">
+        Scan Card with Google Mobile Vision
+      </h2>
+      <ImageCapturing />
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import NumberInput from '@/components/NumberInput.vue';
-import ImageCapturing from '@/components/ImageCapturing.vue';
+import NumberForm from '@/components/NumberForm/NumberForm.vue';
+import ImageCapturing from '@/components/ImageCapturing/ImageCapturing.vue';
 
 @Component({
   name: 'InputView',
   components: {
-    NumberInput, ImageCapturing,
+    NumberForm,
+    ImageCapturing,
   },
 })
 export default class InputView extends Vue {}

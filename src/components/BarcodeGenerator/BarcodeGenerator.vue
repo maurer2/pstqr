@@ -18,7 +18,9 @@ import JsBarcode from 'jsbarcode';
 
 @Component
 export default class BarcodeGenerator extends Vue {
-  @Prop({ type: [Boolean, String], default: false, required: true }) private number!: string;
+  @Prop({
+    type: [Boolean, String], default: false, required: true,
+  }) private number!: string;
 
   private mounted() {
     this.initBarcode();

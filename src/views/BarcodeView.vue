@@ -14,8 +14,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import NumberSelect from '@/components/NumberSelect.vue';
-import BarcodeGenerator from '@/components/BarcodeGenerator.vue';
+
+import NumberSelect from '@/components/NumberSelect/NumberSelect.vue';
+import BarcodeGenerator from '@/components/BarcodeGenerator/BarcodeGenerator.vue';
 
 @Component({
   name: 'BarcodeView',

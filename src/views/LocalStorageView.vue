@@ -9,7 +9,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LocalStorageClient from '@/components/LocalStorageClient.vue';
+
+import LocalStorageClient from '@/components/LocalStorageClient/LocalStorageClient.vue';
 
 @Component({
   name: 'LocalStorageView',

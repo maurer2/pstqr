@@ -6,16 +6,10 @@
       class="selectbox"
       @change="$emit('numberHasChanged', selectedNumber)"
     >
-      <option
-        disabled
-        value=""
-      >
+      <option disabled value="">
         Nummer auswählen
       </option>
-      <option
-        v-for="number in numbersList"
-        :key="number"
-      >
+      <option v-for="number in numbersList" :key="number">
         {{ number }}
       </option>
     </select>

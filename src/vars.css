@@ -1,0 +1,9 @@
+:root {
+  --color-alpha: rgba(72, 65, 76, 1);
+  --color-beta: rgba(182, 151, 160, 1);
+  --color-gamma: rgba(147, 144, 156, 1);
+  --color-delta: rgba(75, 67, 64, 1);
+  --color-zeta: rgba(232, 228, 226, 1);
+  --color-positive: rgba(72, 166, 72, 1);
+  --color-negative: rgba(255, 0, 0, 1);
+}
