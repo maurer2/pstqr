@@ -30,7 +30,6 @@
     "http-errors": "^1.7.3",
     "jsbarcode": "^3.11.0",
     "lodash": "^4.17.15",
-    "normalize.css": "^8.0.1",
     "postcss-nesting": "^7.0.1",
     "postcss-normalize": "^8.0.1",
     "postcss-short-color": "^4.0.0",

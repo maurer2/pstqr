@@ -42,7 +42,6 @@ export default class App extends Vue {
 </script>
 
 <style>
-@import '~normalize.css';
 @import 'global.css';
 </style>;
 
