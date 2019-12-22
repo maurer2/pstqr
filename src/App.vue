@@ -6,30 +6,17 @@
       </h1>
     </header>
     <nav class="nav">
-      <router-link
-        class="router-link"
-        to="/"
-      >
-        Home
-      </router-link>
-      <router-link
-        class="router-link"
-        to="/inputView"
-      >
-        Input
-      </router-link>
-      <router-link
-        class="router-link"
-        to="/barcodeView"
-      >
-        Barcode
-      </router-link>
-      <router-link
-        class="router-link"
-        to="/localStorageView"
-      >
-        LocalStorage
-      </router-link>
+      <template v-for="(route, routeName) in routesMap">
+        <router-link
+          class="link"
+          :to="route"
+          :key="route"
+          active-class="link--is-active"
+          exact
+        >
+          {{ routeName }}
+        </router-link>
+      </template>
     </nav>
     <main class="main">
       <router-view />
@@ -44,7 +31,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+  private routesMap: { [key: string]: string } = {
+    Home: '/',
+    Input: '/inputView',
+    Barcode: '/barcodeView',
+    LocalStorage: '/localStorageView',
+  };
+}
 </script>
 
 <style>
@@ -75,12 +69,12 @@ export default class App extends Vue {}
   justify-content: space-evenly;
   background: var(--color-alpha);
 
-  & .router-link {
+  & .link {
     padding: 0.5rem;
     flex-grow: 1;
   }
 
-  & .router-link--is-active {
+  & .link--is-active {
     font-weight: bold;
     background: var(--color-zeta);
     color: var(--color-alpha);

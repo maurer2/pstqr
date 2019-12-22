@@ -24,7 +24,7 @@ import BarcodeGenerator from '@/components/BarcodeGenerator.vue';
   },
 })
 export default class BarcodeView extends Vue {
-  private numbersList!: string[];
+  private numbersList: string[] = [];
   private selectedNumber: string = '';
 
   private mounted() {
