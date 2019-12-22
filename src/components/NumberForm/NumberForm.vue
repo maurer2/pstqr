@@ -1,30 +1,13 @@
 <template>
-  <form
-    class="section form"
-    autocomplete="off"
-    novalidate
-    @submit.prevent="calculateNumber"
-  >
-    <output
-      v-if="isValidInput && numberCalculated.length > 0"
-      class="results"
-    >
-      <span class="key">Neue Nummer:</span>
-      <span class="value">{{ numberCalculated }}</span>
-    </output>
-    <fieldset class="fields">
+  <form class="section form" autocomplete="off" @submit.prevent="calculateNumber">
+    <fieldset class="fields" :class="{ 'fields--is-disabled': showResult }" :disabled="showResult">
       <div class="form-row">
-        <label
-          class="form-label"
-          for="number"
-        >
-          Alte Nummer
-          <span
-            v-if="number.length > 0"
-            class="counter"
-            :class="counterClass"
-          >
-            ({{ number.length }} Zeichen eingegeben)
+        <label class="form-label" for="number">
+          <span class="text">
+            Kartennummer:
+          </span>
+          <span class="counter" :class="counterClass" v-if="number.length > 0">
+            {{ number.length | addLeadingZero }} Zeichen
           </span>
         </label>
         <input
@@ -38,19 +21,32 @@
           pattern="[0-9]*"
           inputmode="numeric"
         >
-        <p
-          v-if="!isValidInput"
-          class="form-error"
-        >
-          Nummer muss eine Zahl sein und 7 bis 9 Zeichen lang sein!
+        <p class="form-error" v-if="!isValidInput">
+          Nummer muss zwischen 7 bis 9 Ziffern lang sein.
         </p>
       </div>
       <div class="form-row">
-        <button
-          type="submit"
-          class="form-button"
-        >
-          Submit
+        <button class="form-button" type="submit">
+          Barcodenummer berechnen
+        </button>
+      </div>
+    </fieldset>
+
+    <fieldset class="fields" v-if="showResult">
+      <div class="form-row">
+        <output class="results">
+          <span class="key">Berechnete Nummer:</span>
+          <span class="value">{{ numberCalculated }}</span>
+        </output>
+      </div>
+      <div class="form-row">
+        <button class="form-button" type="button" @click="addNumberToStore">
+          Nummer speichern
+        </button>
+      </div>
+      <div class="form-row">
+        <button class="form-button" type="button" @click="resetForm">
+          Abbrechen
         </button>
       </div>
     </fieldset>
@@ -64,18 +60,26 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 // <reference path="../../../NumberGenerator/javascript/PostNumber.d.ts" />
 import PostnumberConverter from '../../../NumberGenerator/javascript/PostNumber';
 
-@Component
+@Component({
+  filters: {
+    addLeadingZero(number: number, targetLength: number = 2): string {
+      if (!number) return '';
+
+      return number.toString().padStart(targetLength, '0');
+    },
+  },
+})
 export default class NumberForm extends Vue {
   private number: string = '';
   private numberCalculated: string = '';
   private isValidInput: boolean = true;
   private numberConverter!: PostnumberConverter;
 
-  private mounted() {
+  private mounted(): void {
     this.numberConverter = new PostnumberConverter();
   }
 
-  private calculateNumber() {
+  private calculateNumber(): void {
     const isValidLength = (this.number.length >= 7 && this.number.length <= 9);
     const isValidNumber = !Number.isNaN(parseInt(this.number, 10));
 
@@ -90,12 +94,27 @@ export default class NumberForm extends Vue {
     this.isValidInput = false;
   }
 
-  private get counterClass() {
+  private addNumberToStore(): void {
+    console.log('add to store', this.number);
+  }
+
+  private resetForm(): void {
+    this.numberCalculated = '';
+    this.isValidInput = true;
+
+    console.log('reset form', this.number);
+  }
+
+  private get counterClass(): string {
     return (this.number.length >= 7 && this.number.length <= 9) ? 'counter--is-valid' : 'counter--is-invalid';
   }
 
+  private get showResult(): boolean {
+    return this.isValidInput && this.numberCalculated.length > 0;
+  }
+
   @Watch('numberCalculated')
-  private onNumberCalculatedChange() {
+  private onNumberCalculatedChange(): void {
     this.$store.commit('addCalculatedNumber', this.numberCalculated);
   }
 }
@@ -111,6 +130,14 @@ export default class NumberForm extends Vue {
     padding: 0;
     margin: 0 0 1rem 0;
     min-width: 0;
+    opacity: 1;
+    transition: 0.5s all;
+  }
+
+  .fields--is-disabled {
+    pointer-events: none;
+    filter: grayscale(1);
+    opacity: 0.25;
   }
 
   .form-row {
@@ -120,10 +147,17 @@ export default class NumberForm extends Vue {
   }
 
   .form-label {
+    display: flex;
     margin-bottom: 0.5rem;
+    align-items: baseline;
+
+    & .text {
+      margin-right: auto;
+    }
 
     & .counter {
       font-size: 0.85rem;
+      font-style: italic;
     }
 
     & .counter--is-valid {
@@ -140,6 +174,7 @@ export default class NumberForm extends Vue {
     padding: 0.5rem;
     background: white;
     border: 1px solid var(--color-delta);
+    font-size: 0.85rem;
   }
 
   .form-field::-webkit-inner-spin-button,
@@ -156,20 +191,19 @@ export default class NumberForm extends Vue {
   }
 
   .results {
-    display: block;
-    margin-bottom: 1rem;
+    display: flex;
     padding: 1rem;
+    justify-content: center;
     text-align: center;
-    color: var(--color-alpha) var(--color-gamma);
+    color: var(--color-alpha);
+    border: 1px solid var(--color-gamma);
 
     & .key {
-      display: inline-block;
       padding: 0.25rem;
       white-space: nowrap;
     }
 
     & .value {
-      display: inline-block;
       padding: 0.25rem;
       font-weight: bold;
     }
