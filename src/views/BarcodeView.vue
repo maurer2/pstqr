@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { State, Getter } from 'vuex-class';
 
 import NumberSelect from '@/components/NumberSelect/NumberSelect.vue';
 import BarcodeGenerator from '@/components/BarcodeGenerator/BarcodeGenerator.vue';
@@ -33,15 +34,10 @@ import BarcodeGenerator from '@/components/BarcodeGenerator/BarcodeGenerator.vue
   },
 })
 export default class BarcodeView extends Vue {
+  @Getter('hasBarcodeNumbers') hasBarcodeNumbers!: boolean;
+  @State('barcodeNumbers') numbersList!: string[];
+
   private selectedNumber: string = '';
-
-  private get hasBarcodeNumbers(): boolean {
-    return this.$store.getters.hasBarcodeNumbers;
-  }
-
-  private get numbersList(): string[] {
-    return this.$store.state.barcodeNumbers;
-  }
 
   private updateSelectedNumber(value: string) {
     this.selectedNumber = value;

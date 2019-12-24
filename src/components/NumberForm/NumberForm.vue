@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 // <reference path="../../../NumberGenerator/javascript/LuhnDigit.d.ts" />
 // import LuhnChecker from '../../../NumberGenerator/javascript/LuhnDigit';
 // <reference path="../../../NumberGenerator/javascript/PostNumber.d.ts" />
