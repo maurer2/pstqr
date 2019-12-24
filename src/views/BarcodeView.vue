@@ -33,15 +33,14 @@ import BarcodeGenerator from '@/components/BarcodeGenerator/BarcodeGenerator.vue
   },
 })
 export default class BarcodeView extends Vue {
-  private numbersList: string[] = [];
   private selectedNumber: string = '';
-  private hasBarcodeNumbers: boolean = false;
 
-  private mounted() {
-    if (this.$store.getters.hasBarcodeNumbers) {
-      this.numbersList = this.$store.state.barcodeNumbers;
-      this.hasBarcodeNumbers = true;
-    }
+  private get hasBarcodeNumbers(): boolean {
+    return this.$store.getters.hasBarcodeNumbers;
+  }
+
+  private get numbersList(): string[] {
+    return this.$store.state.barcodeNumbers;
   }
 
   private updateSelectedNumber(value: string) {
