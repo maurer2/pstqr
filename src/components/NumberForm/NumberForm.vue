@@ -102,8 +102,6 @@ export default class NumberForm extends Vue {
   private resetForm(): void {
     this.numberCalculated = '';
     this.isValidInput = true;
-
-    console.log('reset form', this.number);
   }
 
   private get counterClass(): string {
@@ -113,13 +111,6 @@ export default class NumberForm extends Vue {
   private get showResult(): boolean {
     return this.isValidInput && this.numberCalculated.length > 0;
   }
-
-  /*
-  @Watch('numberCalculated')
-  private onNumberCalculatedChange(): void {
-    this.$store.commit('addCalculatedNumber', this.numberCalculated);
-  }
-  */
 }
 </script>
 

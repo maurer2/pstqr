@@ -8,7 +8,7 @@ export default new Vuex.Store({
     barcodeNumbers: [] as string[],
   },
   mutations: {
-    addBarcodeNumber(state, number): void {
+    addBarcodeNumber(state, number: string): void {
       const newBarcodeNumbers = [...state.barcodeNumbers];
 
       newBarcodeNumbers.push(number);
@@ -19,5 +19,8 @@ export default new Vuex.Store({
     addBarcodeNumber(store, number): void {
       store.commit('addBarcodeNumber', number);
     },
+  },
+  getters: {
+    hasBarcodeNumbers: (state) => state.barcodeNumbers.length > 0,
   },
 });
