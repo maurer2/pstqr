@@ -1,12 +1,13 @@
 <template>
   <section class="section barcode-generator">
     <h2 class="section-title">
-      Nummer als Barcode
+      Barcode
     </h2>
     <svg
       ref="barcode"
       class="barcode"
       jsbarcode-format="itf"
+      jsbarcode-displayvalue="false"
       :jsbarcode-value="number"
     />
   </section>
@@ -49,5 +50,7 @@ export default class BarcodeGenerator extends Vue {
   .barcode {
     display: block;
     margin: auto;
+    image-rendering: pixelated;
+
   }
 </style>
