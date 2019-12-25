@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     barcodeNumbers: [] as string[],
+    selectedBarcodeNumber: '',
   },
   mutations: {
     addBarcodeNumber(state, number: string): void {
@@ -14,10 +15,16 @@ export default new Vuex.Store({
       newBarcodeNumbers.push(number);
       state.barcodeNumbers = newBarcodeNumbers;
     },
+    updateSelectedBarcodeNumber(state: any, number: string): void {
+      state.selectedBarcodeNumber = number;
+    },
   },
   actions: {
-    addBarcodeNumber(store, number): void {
+    addBarcodeNumber(store: any, number: string): void {
       store.commit('addBarcodeNumber', number);
+    },
+    updateSelectedBarcodeNumber(store: any, number: string): void {
+      store.commit('updateSelectedBarcodeNumber', number);
     },
   },
   getters: {

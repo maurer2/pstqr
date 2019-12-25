@@ -4,7 +4,8 @@
       <NumberSelect
         v-if="numbersList.length > 0"
         :numbers-list="numbersList"
-        @numberHasChanged="updateSelectedNumber"
+        :number="selectedNumber"
+        @numberHasChanged="updateSelectedBarcodeNumber"
       />
       <BarcodeGenerator
         v-if="selectedNumber.length > 0"
@@ -36,11 +37,10 @@ import BarcodeGenerator from '@/components/BarcodeGenerator/BarcodeGenerator.vue
 export default class BarcodeView extends Vue {
   @Getter('hasBarcodeNumbers') hasBarcodeNumbers!: boolean;
   @State('barcodeNumbers') numbersList!: string[];
+  @State('selectedBarcodeNumber') selectedNumber !: string;
 
-  private selectedNumber: string = '';
-
-  private updateSelectedNumber(value: string) {
-    this.selectedNumber = value;
+  private updateSelectedBarcodeNumber(number: string): void {
+    this.$store.commit('updateSelectedBarcodeNumber', number);
   }
 }
 </script>
