@@ -1,11 +1,12 @@
 <template>
   <section class="section number-select">
-    <h2>Gespeicherte Nummern</h2>
-
+    <h2 class="section-title">
+      Gespeicherte Nummern
+    </h2>
     <select
       class="selectbox"
-      v-model="selectedNumber"
-      @change="$emit('numberHasChanged', selectedNumber)"
+      v-model="selectValue"
+      @change="$emit('numberHasChanged', newBarcodeNumber)"
     >
       <option disabled value="">
         Nummer auswählen
@@ -14,13 +15,12 @@
         {{ number }}
       </option>
     </select>
-
-    <p class="message" v-if="hasSelectedNumber">
+    <p class="message" v-if="hasSelectedBarcodeNumber">
       <span class="key">
         Gewählte Nummer:
       </span>
       <span class="value">
-        {{ selectedNumber }}
+        {{ selectedBarcodeNumber }}
       </span>
     </p>
   </section>
@@ -32,12 +32,20 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class NumberSelect extends Vue {
   @Prop({ default: () => [] }) private numbersList!: [];
-  @Prop({ default: () => [] }) private numbersList!: [];
+  @Prop() private selectedBarcodeNumber!: string;
 
-  private selectedNumber = '' as string;
+  private newBarcodeNumber: string = '';
 
-  private get hasSelectedNumber(): boolean {
-    return this.selectedNumber !== '';
+  private get selectValue(): string {
+    return this.newBarcodeNumber;
+  }
+
+  private set selectValue(value: string) {
+    this.newBarcodeNumber = value;
+  }
+
+  private get hasSelectedBarcodeNumber(): boolean {
+    return this.selectedBarcodeNumber !== '';
   }
 }
 </script>
