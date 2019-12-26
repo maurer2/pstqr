@@ -34,7 +34,7 @@ export default class NumberSelect extends Vue {
   @Prop({ default: () => [] }) private numbersList!: [];
   @Prop() private selectedBarcodeNumber!: string;
 
-  private newBarcodeNumber: string = '';
+  private newBarcodeNumber: string = this.selectedBarcodeNumber;
 
   private get selectValue(): string {
     return this.newBarcodeNumber;
