@@ -6,7 +6,11 @@
           <span class="text">
             Kartennummer:
           </span>
-          <span class="counter" :class="counterClass" v-if="number.length > 0">
+          <span
+            class="counter"
+            :class="isValidNumberLength ? 'counter--is-valid' : 'counter--is-invalid'"
+            v-if="number.length > 0"
+          >
             {{ number.length | addLeadingZero }} Zeichen
           </span>
         </label>
@@ -26,7 +30,12 @@
         </p>
       </div>
       <div class="form-row">
-        <button class="form-button" type="submit">
+        <button
+          class="form-button"
+          :class="{ 'form-button--is-disabled': !isValidNumberLength }"
+          :disabled="!isValidNumberLength"
+          type="submit"
+        >
           Barcodenummer berechnen
         </button>
       </div>
@@ -104,8 +113,8 @@ export default class NumberForm extends Vue {
     this.isValidInput = true;
   }
 
-  private get counterClass(): string {
-    return (this.number.length >= 7 && this.number.length <= 9) ? 'counter--is-valid' : 'counter--is-invalid';
+  private get isValidNumberLength(): boolean {
+    return (this.number.length >= 7 && this.number.length <= 9);
   }
 
   private get showResult(): boolean {
@@ -169,6 +178,11 @@ export default class NumberForm extends Vue {
     background: white;
     border: 1px solid var(--color-delta);
     font-size: 0.85rem;
+  }
+
+  .form-button--is-disabled {
+    color: var(--color-beta);
+    cursor: not-allowed;
   }
 
   .form-field::-webkit-inner-spin-button,
