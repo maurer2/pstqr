@@ -44,6 +44,7 @@ export default class App extends Vue {
 
 <style lang="postcss">
 @import 'normalize';
+@import '~fg-select-css/src/select-css.css';
 @import 'vars.css';
 @import 'global.css';
 </style>
