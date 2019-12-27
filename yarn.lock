@@ -3673,6 +3673,11 @@ faye-websocket@~0.11.1:
   dependencies:
     websocket-driver ">=0.5.1"
 
+fg-select-css@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/fg-select-css/-/fg-select-css-3.2.0.tgz#120fd7fe99b93536beefb519d82eee4fc0e6492c"
+  integrity sha512-rTjgTDmUV4doxX7cJRvayo2D8m36T2NgbS1ZbFVhcesIxpp8kPgRMr+8Iu5mZbxgwCOZcPQqzVj74uqBHmnjxg==
+
 figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"

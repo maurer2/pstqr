@@ -4,7 +4,7 @@
       Gespeicherte Nummern
     </h2>
     <select
-      class="selectbox"
+      class="selectbox select-css"
       v-model="selectValue"
       @change="$emit('numberHasChanged', newBarcodeNumber)"
     >
@@ -54,9 +54,8 @@ export default class NumberSelect extends Vue {
   .number-select {}
 
   .selectbox {
-    padding: 0.5rem;
+    border: 1px solid var(--color-delta);
     border-radius: 0;
-    appearance: none;
   }
 
   .message {

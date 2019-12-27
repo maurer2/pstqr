@@ -27,6 +27,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-vue": "^6.0.1",
+    "fg-select-css": "^3.2.0",
     "http-errors": "^1.7.3",
     "jsbarcode": "^3.11.0",
     "lodash": "^4.17.15",
