@@ -30,22 +30,6 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class LocalStorageClient extends Vue {
-  private localStorageIsSupported: boolean = false;
-  private uniqueKey: string = 'PSTQR';
-
-  private mounted() {
-    try {
-      const keyName = `${this.uniqueKey}-isSupported`;
-
-      localStorage.setItem(keyName, 'true');
-      localStorage.removeItem(keyName);
-
-      this.localStorageIsSupported = true;
-    } catch (e) {
-      this.localStorageIsSupported = false;
-    }
-  }
-
   private setSavedNumbers() {
     if (!this.localStorageIsSupported) {
       return;

@@ -8,6 +8,9 @@ Vue.config.productionTip = false;
 new Vue({
   store,
   router,
+  beforeCreate() {
+    this.$store.commit('restoreBarcodeNumbers');
+  },
   render(h): VNode {
     return h(App);
   },

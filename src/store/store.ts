@@ -1,14 +1,60 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+const checkStorageSupport = (key: string = 'pstqr') => {
+  const storage = localStorage;
+
+  try {
+    const testEntry: string = `${key}-test-entry`;
+
+    storage.setItem(testEntry, testEntry);
+    storage.removeItem(testEntry);
+
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const setStorageValue = (key: string = 'pstqr', value: any) => {
+  const storage = localStorage;
+
+  storage.setItem(`${key}-numbers`, JSON.stringify(value));
+};
+
+const getStorageValue = (key: string = 'pstqr', value: any) => {
+  const storage = localStorage;
+
+  const storedValue: any = storage.getItem(`${key}-numbers`);
+
+  return storedValue;
+};
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     barcodeNumbers: [] as string[],
     selectedBarcodeNumber: '',
+    hasStorageSupport: checkStorageSupport(),
   },
   mutations: {
+    restoreBarcodeNumbers(state: any, payload: any): void {
+      if (!state.hasStorageSupport) {
+        return;
+      }
+
+      const storedValue = getStorageValue(payload.key, 'value');
+      console.log(storedValue);
+    },
+    storeBarcodeNumbers(state: any, key: string): void {
+      if (!state.hasStorageSupport) {
+        return;
+      }
+
+      const storedValue = getStorageValue('pstqr', 'value');
+      console.log(storedValue);
+    },
     addBarcodeNumber(state, number: string): void {
       const newBarcodeNumbers = [...state.barcodeNumbers];
 
