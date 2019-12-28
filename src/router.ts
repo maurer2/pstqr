@@ -4,7 +4,7 @@ import Router from 'vue-router';
 import HomeView from './views/HomeView.vue';
 import BarcodeView from './views/BarcodeView.vue';
 import InputView from './views/InputView.vue';
-import LocalStorageView from './views/LocalStorageView.vue';
+import StorageView from './views/StorageView.vue';
 
 Vue.use(Router);
 
@@ -30,9 +30,9 @@ export default new Router({
       // component: () => import(webpackChunkName: "inputView" './views/inputView.vue')
     },
     {
-      path: '/localStorageView',
-      name: 'localStorageView',
-      component: LocalStorageView,
+      path: '/storageView',
+      name: 'storageView',
+      component: StorageView,
       // component: () => import(
       //  webpackChunkName: "localStorageView" './views/LocalStorageView.vue'
       // )
