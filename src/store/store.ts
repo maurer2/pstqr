@@ -5,7 +5,7 @@ const checkStorageSupport = (key: string = 'pstqr') => {
   const storage = localStorage;
 
   try {
-    const testEntry: string = `${key}-test-entry`;
+    const testEntry: string = `${key}:test-entry`;
 
     storage.setItem(testEntry, testEntry);
     storage.removeItem(testEntry);
@@ -16,16 +16,16 @@ const checkStorageSupport = (key: string = 'pstqr') => {
   }
 };
 
-const setStorageValue = (key: string = 'pstqr', value: any) => {
+const setStorageValue = (key: string, value: string): void => {
   const storage = localStorage;
 
-  storage.setItem(`${key}-numbers`, value);
+  storage.setItem(`${key}:barcodeNumbers`, value);
 };
 
-const getStorageValue = (key: string = 'pstqr', value: any) => {
+const getStorageValue = (key: string): any => {
   const storage = localStorage;
 
-  const storedValue: any = storage.getItem(`${key}-numbers`);
+  const storedValue: any = storage.getItem(`${key}:barcodeNumbers`);
 
   return storedValue;
 };
@@ -39,21 +39,24 @@ export default new Vuex.Store({
     hasStorageSupport: checkStorageSupport(),
   },
   mutations: {
-    restoreBarcodeNumbers(state: any, payload: any): void {
+    restoreBarcodeNumbers(state: any): void {
       if (!state.hasStorageSupport) {
         return;
       }
 
-      const storedValue = getStorageValue(payload.key, 'value');
-      console.log(storedValue);
+      const storedValue: string = getStorageValue('pstqr');
+      const decodedStoredValue: any = JSON.parse(storedValue);
+
+      state.barcodeNumbers = decodedStoredValue;
     },
     storeBarcodeNumbers(state: any, data: any): void {
       if (!state.hasStorageSupport) {
         return;
       }
 
-      setStorageValue('pstqr', data);
-      console.log('data', data);
+      const stringifiedBarcodeNumbers = JSON.stringify(data);
+
+      setStorageValue('pstqr', stringifiedBarcodeNumbers);
     },
     addBarcodeNumber(state, number: string): void {
       const newBarcodeNumbers = [...state.barcodeNumbers];

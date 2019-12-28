@@ -9,10 +9,10 @@ new Vue({
   store,
   router,
   beforeCreate() {
-    // this.$store.commit('restoreBarcodeNumbers');
+    const dummyData = ['3000077901228187'];
+    this.$store.commit('storeBarcodeNumbers', dummyData);
 
-    const dummyData = ['123456789'];
-    this.$store.commit('storeBarcodeNumbers', JSON.stringify(dummyData));
+    this.$store.commit('restoreBarcodeNumbers');
   },
   render(h): VNode {
     return h(App);
