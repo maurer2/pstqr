@@ -19,7 +19,7 @@ const checkStorageSupport = (key: string = 'pstqr') => {
 const setStorageValue = (key: string = 'pstqr', value: any) => {
   const storage = localStorage;
 
-  storage.setItem(`${key}-numbers`, JSON.stringify(value));
+  storage.setItem(`${key}-numbers`, value);
 };
 
 const getStorageValue = (key: string = 'pstqr', value: any) => {
@@ -47,13 +47,13 @@ export default new Vuex.Store({
       const storedValue = getStorageValue(payload.key, 'value');
       console.log(storedValue);
     },
-    storeBarcodeNumbers(state: any, key: string): void {
+    storeBarcodeNumbers(state: any, data: any): void {
       if (!state.hasStorageSupport) {
         return;
       }
 
-      const storedValue = getStorageValue('pstqr', 'value');
-      console.log(storedValue);
+      setStorageValue('pstqr', data);
+      console.log('data', data);
     },
     addBarcodeNumber(state, number: string): void {
       const newBarcodeNumbers = [...state.barcodeNumbers];

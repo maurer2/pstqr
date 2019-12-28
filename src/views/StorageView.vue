@@ -3,12 +3,12 @@
     <h2 class="section-headline">
       LocalStorage
     </h2>
-    <template v-if="!hasStorageSupport">
+    <template v-if="hasStorageSupport">
       <LocalStorageClient />
     </template>
     <template v-else>
       <p class="message">
-        Storage not available
+        Browser storage not available.
       </p>
     </template>
   </div>
@@ -18,12 +18,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 
-import LocalStorageClient from '@/components/LocalStorageClient/LocalStorageClient.vue';
+import StorageClient from '@/components/StorageClient/StorageClient.vue';
 
 @Component({
   name: 'LocalStorageView',
   components: {
-    LocalStorageClient,
+    StorageClient,
   },
 })
 export default class LocalStorageView extends Vue {
