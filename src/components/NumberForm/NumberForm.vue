@@ -173,12 +173,7 @@ export default class NumberForm extends Vue {
   }
 
   .form-field,
-  .form-button {
-    padding: 0.5rem;
-    background: white;
-    border: 1px solid var(--color-delta);
-    font-size: 0.85rem;
-  }
+  .form-button {}
 
   .form-button--is-disabled {
     color: var(--color-beta);
