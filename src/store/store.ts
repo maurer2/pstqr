@@ -67,6 +67,9 @@ export default new Vuex.Store({
     updateSelectedBarcodeNumber(state: any, number: string): void {
       state.selectedBarcodeNumber = number;
     },
+    clearBarcodeNumbers(state): void {
+      state.barcodeNumbers = [];
+    },
   },
   actions: {
     addBarcodeNumber(store: any, number: string): void {
@@ -74,6 +77,9 @@ export default new Vuex.Store({
     },
     updateSelectedBarcodeNumber(store: any, number: string): void {
       store.commit('updateSelectedBarcodeNumber', number);
+    },
+    clearBarcodeNumbers(store: any): void {
+      store.commit('clearBarcodeNumbers');
     },
   },
   getters: {
