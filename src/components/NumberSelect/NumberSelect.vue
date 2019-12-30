@@ -30,6 +30,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
+const dropdownIconFile: string = require('./dropdown-icon.svg');
+
 @Component
 export default class NumberSelect extends Vue {
   @Prop({ default: () => [] }) private numbersList!: [];
@@ -37,8 +39,7 @@ export default class NumberSelect extends Vue {
 
   private newBarcodeNumber: string = this.selectedBarcodeNumber;
 
-  // eslint-disable-next-line
-  private dropdownIcon = require('./dropdown-icon.svg');
+  private dropdownIcon = dropdownIconFile;
 
   private get selectValue(): string {
     return this.newBarcodeNumber;
