@@ -29,7 +29,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class LocalStorageClient extends Vue {
+export default class StorageClient extends Vue {
   
 }
 </script>

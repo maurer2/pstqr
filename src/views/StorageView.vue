@@ -1,14 +1,14 @@
 <template>
   <div class="card-view">
     <h2 class="section-headline">
-      LocalStorage
+      Storage
     </h2>
     <template v-if="hasStorageSupport">
-      <LocalStorageClient />
+      <StorageClient />
     </template>
     <template v-else>
       <p class="message">
-        Browser storage not available.
+        Persistent storage not available.
       </p>
     </template>
   </div>

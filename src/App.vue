@@ -6,16 +6,16 @@
       </h1>
     </header>
     <nav class="nav">
-      <template v-for="(route, routeName) in routesMap">
+      <template v-for="route in $router.options.routes">
         <router-link
           class="link"
           active-class="link--is-active"
           exact-active-class="link--is-active"
           exact
-          :to="route"
-          :key="route"
+          :to="route.path"
+          :key="route.path"
         >
-          {{ routeName }}
+          {{ route.name }}
         </router-link>
       </template>
     </nav>
@@ -33,18 +33,14 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class App extends Vue {
-  private routesMap: { [key: string]: string } = {
-    Home: '/',
-    Input: '/inputView',
-    Barcode: '/barcodeView',
-    LocalStorage: '/localStorageView',
-  };
+
 }
 </script>
 
 <style lang="postcss">
 @import 'normalize';
 @import '~fg-select-css/src/select-css.css';
+
 @import 'vars.css';
 @import 'global.css';
 </style>
@@ -69,12 +65,12 @@ export default class App extends Vue {
 
 .nav {
   display: flex;
-  justify-content: space-evenly;
   background: var(--color-alpha);
 
   & .link {
     padding: 0.5rem;
     flex-grow: 1;
+    flex-basis: 0;
   }
 
   & .link--is-active {
@@ -92,4 +88,5 @@ export default class App extends Vue {
   padding: 0.5rem;
   color: var(--color-zeta) var(--color-delta);
 }
+
 </style>
